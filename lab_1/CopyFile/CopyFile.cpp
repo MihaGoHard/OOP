@@ -55,6 +55,7 @@ int main(int argc, char* argv[])
 	}
 
 	std::ofstream output;
+
 	output.open(args->outputFileName);
 	if (!output.is_open())
 	{
