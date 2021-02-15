@@ -1,9 +1,8 @@
+#include "CopyFile.h"
 #include <fstream>
 #include <iostream>
 #include <optional>
 #include <string>
-#include "CopyFile.h"
-
 
 struct Args
 {
@@ -25,7 +24,6 @@ std::optional<Args> ParseArgs(int argc, char* argv[]) // возвращает либо объект 
 	return args;
 }
 
-
 void CopyStreams(std::ifstream& input, std::ofstream& output)
 {
 	char ch;
@@ -46,7 +44,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	std::ifstream input;
+	std::ifstream input;			 // открыть поток input
 	input.open(args->inputFileName); // через стрелку обращение к значению объекта(убедиться, что объект не пуст)
 	if (!input.is_open())
 	{
@@ -65,22 +63,17 @@ int main(int argc, char* argv[])
 
 	CopyStreams(input, output);
 
-	if (input.bad())   
+	if (input.bad())
 	{
-		std::cout << "Faild to read data from input file\n"; 
+		std::cout << "Faild to read data from input file\n";
 		return 1;
 	}
 
-	if (!output.flush())  // connect with buffer and disc 
+	if (!output.flush()) // connect with buffer and disc
 	{
 		std::cout << "faild to write data to otput file\n";
 		return 1;
 	}
 
-	/*std::cout << argc << "\n";
-    for (int i = 0; i < argc; ++i)
-    {
-        std::cout << argv[i] << "\n";
-    }*/
 	return 0;
 }
