@@ -1,5 +1,5 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -10,8 +10,8 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-    std::ifstream input;
-    input.open(argv[1]);
+	std::ifstream input;
+	input.open(argv[1]);
 	if (!input.is_open())
 	{
 		std::cout << "Faild to open '" << argv[1] << "' for reading\n";
@@ -29,7 +29,22 @@ int main(int argc, char* argv[])
 	char ch;
 	while (input.get(ch))
 	{
-		output.put(ch);
+		if (!output.put(ch))
+		{
+			break;  // выход из цикла
+		}
+	}
+
+	if (input.bad())
+	{
+		std::cout << "Faild to read data from input file\n"; 
+		return 1;
+	}
+
+	if (!output.flush())
+	{
+		std::cout << "faild to write data to otput file\n";
+		return 1;
 	}
 
 	/*std::cout << argc << "\n";
@@ -37,5 +52,5 @@ int main(int argc, char* argv[])
     {
         std::cout << argv[i] << "\n";
     }*/
-    return 0;
+	return 0;
 }
