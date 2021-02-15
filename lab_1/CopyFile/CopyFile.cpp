@@ -12,17 +12,24 @@ int main(int argc, char* argv[])
 
     std::ifstream input;
     input.open(argv[1]);
-
 	if (!input.is_open())
 	{
 		std::cout << "Faild to open '" << argv[1] << "' for reading\n";
 		return 1;
 	}
 
+	std::ofstream output;
+	output.open(argv[2]);
+	if (!output.is_open())
+	{
+		std::cout << "Faild to open '" << argv[2] << "' for writing\n";
+		return 1;
+	}
+
 	char ch;
 	while (input.get(ch))
 	{
-		std::cout.put(ch);
+		output.put(ch);
 	}
 
 	/*std::cout << argc << "\n";
