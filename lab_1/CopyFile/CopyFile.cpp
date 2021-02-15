@@ -2,6 +2,7 @@
 #include <iostream>
 #include <optional>
 #include <string>
+#include "CopyFile.h"
 
 
 struct Args
@@ -14,6 +15,8 @@ std::optional<Args> ParseArgs(int argc, char* argv[]) // возвращает либо объект 
 {
 	if (argc != 3)
 	{
+		std::cout << "Invalid arguments number \n";
+		std::cout << "Usage: CopyFile.exe <input file name> <output file name>";
 		return std::nullopt;
 	}
 	Args args;
@@ -23,13 +26,23 @@ std::optional<Args> ParseArgs(int argc, char* argv[]) // возвращает либо объект 
 }
 
 
+void CopyStreams(std::ifstream& input, std::ofstream& output)
+{
+	char ch;
+	while (input.get(ch))
+	{
+		if (!output.put(ch))
+		{
+			break; // выход из цикла
+		}
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	auto args = ParseArgs(argc, argv);
 	if (!argc)
 	{
-		std::cout << "Invalid arguments number \n";
-		std::cout << "Usage: CopyFile.exe <input file name> <output file name>";
 		return 1;
 	}
 
@@ -49,14 +62,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	char ch;
-	while (input.get(ch))
-	{
-		if (!output.put(ch))
-		{
-			break;  // выход из цикла
-		}
-	}
+	CopyStreams(input, output);
 
 	if (input.bad())   
 	{
