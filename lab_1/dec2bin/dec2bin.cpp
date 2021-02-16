@@ -8,7 +8,8 @@
 bool inputIsNotNumber(std::string inputStr) 
 {
 	bool isNotNumber = false;
-	for (int i = 0; i < inputStr.length(); ++i)
+	int strLength = inputStr.length();
+	for (int i = 0; i < strLength; ++i)
 	{
 		if (!isdigit(inputStr[i]))
 		{
@@ -29,8 +30,9 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	if (argc != 2)
 	{
 		std::cout << "Invalid arguments number \n";
-		std::cout << "Usage: CopyFile.exe <input file name> <output file name>";
+		std::cout << "Usage: CopyFile.exe <number>";
 		return std::nullopt;
+
 	}
 	
 	std::string inputStr = argv[1];
@@ -64,7 +66,7 @@ int main(int argc, char* argv[])
 {
 	auto args = ParseArgs(argc, argv);
 
-	if (!argc)
+	if (!args)
 	{
 		return 1;
 	}
@@ -104,4 +106,6 @@ int main(int argc, char* argv[])
 	}
 	
 	std::cout << std::endl;
+
+	return 0;
 }
