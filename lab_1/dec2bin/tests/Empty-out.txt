@@ -1,2 +1,2 @@
-Invalid arguments number
+Invalid arguments number: 0
 Usage: CopyFile.exe <number>

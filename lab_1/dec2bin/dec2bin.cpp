@@ -1,24 +1,28 @@
+
 #include <iostream>
-#include <vector>
-#include <typeinfo>
-#include <string>
 #include <optional>
+#include <string>
+#include <typeinfo>
+#include <vector>
+#include "dec2bin.h"
 
-
-bool inputIsNotNumber(std::string inputStr) 
+bool inputIsNotDecNumber(std::string inputStr)
 {
-	bool isNotNumber = false;
+	bool isNotDecNumber = false;
 	int strLength = inputStr.length();
-	for (int i = 0; i < strLength; ++i)
+	if (inputStr[0] == '0' && strLength != 1)
+	{
+		isNotDecNumber = true;
+	}
+	for (int i = 0; i < strLength && !isNotDecNumber; ++i)
 	{
 		if (!isdigit(inputStr[i]))
 		{
-			isNotNumber = true;
+			isNotDecNumber = true;
 		}
 	}
-	return isNotNumber;
+	return isNotDecNumber;
 }
-
 
 struct Args
 {
@@ -29,18 +33,17 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 {
 	if (argc != 2)
 	{
-		std::cout << "Invalid arguments number \n";
-		std::cout << "Usage: CopyFile.exe <number>";
+		std::cout << "Invalid arguments number: " << argc - 1 << "\n";
+		std::cout << "Usage: CopyFile.exe <number>\n";
 		return std::nullopt;
-
 	}
-	
+
 	std::string inputStr = argv[1];
 
-	if (inputIsNotNumber(inputStr))
+	if (inputIsNotDecNumber(inputStr))
 	{
-		std::cout << "Invalid input \n";
-		std::cout << "Usage: CopyFile.exe <number> ";
+		std::cout << "Invalid input\n";
+		std::cout << "Usage: CopyFile.exe <decimal number>\n";
 		return std::nullopt;
 	}
 
@@ -50,7 +53,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	if (inputStr > maxIntString)
 	{
 		std::cout << "Invalid input number \n";
-		std::cout << "Usage: input number is below, than max unsigned int";
+		std::cout << "Usage: input number is below, than max unsigned int\n";
 		return std::nullopt;
 	}
 
@@ -59,8 +62,34 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	return args;
 }
 
+void GetBinPerfomance(int digitsCount, unsigned int decNum)
+{
+	if (decNum == 0)
+	{
+		std::cout << 0;
+	}
+	for (int i = digitsCount - 1; i >= 0 ; --i)
+	{
+		if (decNum & (1 << i))
+		{
+			std::cout << 1;
+		}
+		else
+		{
+			std::cout << 0;
+		}
+	}
+	std::cout << "\n";
+}
 
-
+void GetDigitsCount(unsigned int decNum, int& digitsCount)
+{
+	for (unsigned int decNumCount = decNum; decNumCount;)
+	{
+		decNumCount >>= 1;
+		++digitsCount;
+	}
+}
 
 int main(int argc, char* argv[])
 {
@@ -71,41 +100,13 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	unsigned int inputNum = args->inputNum;
+	unsigned int decNum = args->inputNum;
 
-	std::cout << inputNum << std::endl;
+	int digitsCount = 0;
 
+	GetDigitsCount(decNum, digitsCount);
 
-	unsigned int decNum = inputNum;
-	int binIndex = 2;
-	int remain = 0;
-	int quotient = 0; 
-	int digitNum = 1;
-
-	while (quotient != 1)
-	{
-		quotient = decNum / binIndex;
-		remain = decNum - quotient * binIndex;
-		decNum = quotient;
-		++digitNum;
-	}
-	
-	decNum = inputNum;
-
-	std::vector<int> digitVector = {};
-
-	for (int i = 0; i < digitNum; i++)
-	{
-		digitVector.push_back(decNum & 1);
-		decNum >>= 1;
-	}
-
-	for (int i = digitNum - 1; i >= 0; --i)
-	{
-		std::cout << digitVector[i] << " ";
-	}
-	
-	std::cout << std::endl;
+	GetBinPerfomance(digitsCount, decNum);
 
 	return 0;
 }
