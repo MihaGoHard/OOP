@@ -6,7 +6,7 @@
 #include <vector>
 #include "dec2bin.h"
 
-bool inputIsNotDecNumber(std::string inputStr)
+bool InputIsNotDecNumber(std::string inputStr)
 {
 	bool isNotDecNumber = false;
 	int strLength = inputStr.length();
@@ -40,7 +40,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 
 	std::string inputStr = argv[1];
 
-	if (inputIsNotDecNumber(inputStr))
+	if (InputIsNotDecNumber(inputStr))
 	{
 		std::cout << "Invalid input\n";
 		std::cout << "Usage: CopyFile.exe <decimal number>\n";
