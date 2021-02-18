@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 	input.open(args->inputFileName); // через стрелку обращение к значению объекта(убедиться, что объект не пуст)
 	if (!input.is_open())
 	{
-		std::cout << "Faild to open '" << args->inputFileName << "' for reading\n";
+		std::cout << "Failed to open '" << args->inputFileName << "' for reading\n";
 		return 1;
 	}
 
