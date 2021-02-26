@@ -1,10 +1,9 @@
-
 #include <iostream>
+#include <cassert>
 #include <optional>
 #include <string>
 #include <typeinfo>
-#include <vector>
-#include "dec2bin.h"
+
 
 bool InputIsNotDecNumber(std::string inputStr)
 {
@@ -23,6 +22,17 @@ bool InputIsNotDecNumber(std::string inputStr)
 	}
 	return isNotDecNumber;
 }
+
+uint32_t ParseBytes(const std::string& inputStr)
+{
+	auto value = std::stoull(inputStr);
+	if (value < 0 || value > UINT32_MAX)
+	{
+		throw std::out_of_range("Invalid input number \nUsage: input number is unsigned int");
+	}
+	return static_cast<uint32_t>(value);
+}
+
 
 struct Args
 {
@@ -47,30 +57,44 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 		return std::nullopt;
 	}
 
-	unsigned int maxInt = std::numeric_limits<unsigned int>::max();
-	std::string maxIntString = std::to_string(maxInt);
-
-	if (inputStr > maxIntString)
+	Args args;
+	
+	try
 	{
-		std::cout << "Invalid input number \n";
-		std::cout << "Usage: input number is below, than max unsigned int\n";
+		args.inputNum = ParseBytes(inputStr);
+	}
+	catch (const std::exception& ex)
+	{
+		std::cout << ex.what() << std::endl;
 		return std::nullopt;
 	}
 
-	Args args;
-	args.inputNum = std::stoul(inputStr, nullptr, 0);
 	return args;
 }
 
-void GetBinPerfomance(int digitsCount, unsigned int decNum)
+int GetDigitsCount(unsigned int decNum)
 {
-	if (decNum == 0)
+	int digitsCount = 0;
+	for (unsigned int decNumCount = decNum; decNumCount;)
+	{
+		decNumCount >>= 1;
+		++digitsCount;
+	}
+	return digitsCount;
+}
+
+
+
+void displayNumberInBinaryNotation(unsigned int inputNumber)
+{
+	int digitsCount = GetDigitsCount(inputNumber);
+	if (inputNumber == 0)
 	{
 		std::cout << 0;
 	}
-	for (int i = digitsCount - 1; i >= 0 ; --i)
+	for (int i = digitsCount - 1; i >= 0; --i)
 	{
-		if (decNum & (1 << i))
+		if (inputNumber & (1 << i))
 		{
 			std::cout << 1;
 		}
@@ -82,14 +106,7 @@ void GetBinPerfomance(int digitsCount, unsigned int decNum)
 	std::cout << "\n";
 }
 
-void GetDigitsCount(unsigned int decNum, int& digitsCount)
-{
-	for (unsigned int decNumCount = decNum; decNumCount;)
-	{
-		decNumCount >>= 1;
-		++digitsCount;
-	}
-}
+
 
 int main(int argc, char* argv[])
 {
@@ -100,13 +117,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	unsigned int decNum = args->inputNum;
-
-	int digitsCount = 0;
-
-	GetDigitsCount(decNum, digitsCount);
-
-	GetBinPerfomance(digitsCount, decNum);
-
+	unsigned int inputNumber = args->inputNum;
+	displayNumberInBinaryNotation(inputNumber);
 	return 0;
 }

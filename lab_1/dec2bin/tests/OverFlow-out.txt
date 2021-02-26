@@ -1,2 +1,2 @@
 Invalid input number 
-Usage: input number is below, than max unsigned int
+Usage: input number is unsigned int
