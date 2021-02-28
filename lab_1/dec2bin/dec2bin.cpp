@@ -76,18 +76,19 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 
 void PrintNumberInBinaryNotation(unsigned int inputNumber)
 {
-	int bitsQuantity = 31;
+	int lastBitIndex = 31;
+	int firstBitIndex = 0;
 	bool printDigits = false;
 	
-	for (int bitNumber = bitsQuantity; bitNumber >= 0; --bitNumber)
+	for (int bitIndex = lastBitIndex; bitIndex >= firstBitIndex; --bitIndex)
 	{
-		if (((inputNumber >> bitNumber) != 0) || (!printDigits && (bitNumber == 0)))
+		if (((inputNumber >> bitIndex) != firstBitIndex) || (!printDigits && (bitIndex == firstBitIndex)))
 		{
 			printDigits = true;
 		}
 		if (printDigits)
 		{
-			std::cout << ((inputNumber >> bitNumber) & 1);
+			std::cout << ((inputNumber >> bitIndex) & 1);
 		}
 	}
 
