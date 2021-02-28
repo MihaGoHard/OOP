@@ -72,37 +72,25 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	return args;
 }
 
-int GetDigitsCount(unsigned int decNum)
+
+
+void PrintNumberInBinaryNotation(unsigned int inputNumber)
 {
-	int digitsCount = 0;
-	for (unsigned int decNumCount = decNum; decNumCount;)
+	int bitsQuantity = 31;
+	bool printDigits = false;
+	
+	for (int bitNumber = bitsQuantity; bitNumber >= 0; --bitNumber)
 	{
-		decNumCount >>= 1;
-		++digitsCount;
-	}
-	return digitsCount;
-}
-
-
-
-void DisplayNumberInBinaryNotation(unsigned int inputNumber)
-{
-	int digitsCount = GetDigitsCount(inputNumber);
-	if (inputNumber == 0)
-	{
-		std::cout << 0;
-	}
-	for (int i = digitsCount - 1; i >= 0; --i)
-	{
-		if (inputNumber & (1 << i))
+		if (((inputNumber >> bitNumber) != 0) || (!printDigits && (bitNumber == 0)))
 		{
-			std::cout << 1;
+			printDigits = true;
 		}
-		else
+		if (printDigits)
 		{
-			std::cout << 0;
+			std::cout << ((inputNumber >> bitNumber) & 1);
 		}
 	}
+
 	std::cout << "\n";
 }
 
@@ -118,6 +106,6 @@ int main(int argc, char* argv[])
 	}
 
 	unsigned int inputNumber = args->inputNum;
-	DisplayNumberInBinaryNotation(inputNumber);
+	PrintNumberInBinaryNotation(inputNumber);
 	return 0;
 }

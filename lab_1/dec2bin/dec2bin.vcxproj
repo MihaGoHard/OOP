@@ -96,7 +96,7 @@
     </Link>
     <PostBuildEvent>
       <Command>"$(ProjectDir)\tests\test.bat" "$(TargetPath)"</Command>
-      <Message>testing</Message>
+      <Message>testing...</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +117,7 @@
     </Link>
     <PostBuildEvent>
       <Command>"$(ProjectDir)\tests\test.bat" "$(TargetPath)"</Command>
-      <Message>testing</Message>
+      <Message>testing...</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -134,7 +134,7 @@
     </Link>
     <PostBuildEvent>
       <Command>"$(ProjectDir)\tests\test.bat" "$(TargetPath)"</Command>
-      <Message>testing</Message>
+      <Message>testing...</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,7 +155,7 @@
     </Link>
     <PostBuildEvent>
       <Command>"$(ProjectDir)\tests\test.bat" "$(TargetPath)"</Command>
-      <Message>testing</Message>
+      <Message>testing...</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
