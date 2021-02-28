@@ -1,0 +1,2 @@
+Invalid content in first file
+Usage: input file includes matrix 3x3 

@@ -35,6 +35,41 @@ void CopyStreams(std::ifstream& input, std::ofstream& output)
 	}
 }
 
+bool OpenStreams(std::ifstream& input, std::ofstream &output, Args &args)
+{
+	input.open(args.inputFileName);
+	if (!input.is_open())
+	{
+		std::cout << "Failed to open '" << args.inputFileName << "' for reading\n";
+		return false;
+	}
+
+	output.open(args.outputFileName);
+	if (!output.is_open())
+	{
+		std::cout << "Faild to open '" << args.outputFileName << "' for writing\n";
+		return false;
+	}
+
+	return true;
+}
+
+bool CopyIsSucced(std::ifstream& input, std::ofstream& output)
+{
+	if (input.bad())
+	{
+		std::cout << "Faild to read data from input file\n";
+		return false;
+	}
+
+	if (!output.flush()) // connect with buffer and disc
+	{
+		std::cout << "faild to write data to otput file\n";
+		return false;
+	}
+	return true;
+}
+
 int main(int argc, char* argv[])
 {
 	auto args = ParseArgs(argc, argv);
@@ -43,34 +78,18 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	std::ifstream input;			 // открыть поток input
-	input.open(args->inputFileName); // через стрелку обращение к значению объекта(убедиться, что объект не пуст)
-	if (!input.is_open())
-	{
-		std::cout << "Failed to open '" << args->inputFileName << "' for reading\n";
-		return 1;
-	}
-
+	std::ifstream input;			 
 	std::ofstream output;
 
-	output.open(args->outputFileName);
-	if (!output.is_open())
+	if(!OpenStreams(input, output, *args))
 	{
-		std::cout << "Faild to open '" << args->outputFileName << "' for writing\n";
 		return 1;
 	}
 
 	CopyStreams(input, output);
 
-	if (input.bad())
+	if (!CopyIsSucced(input, output))
 	{
-		std::cout << "Faild to read data from input file\n";
-		return 1;
-	}
-
-	if (!output.flush()) // connect with buffer and disc
-	{
-		std::cout << "faild to write data to otput file\n";
 		return 1;
 	}
 

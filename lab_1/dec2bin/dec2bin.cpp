@@ -85,7 +85,7 @@ int GetDigitsCount(unsigned int decNum)
 
 
 
-void displayNumberInBinaryNotation(unsigned int inputNumber)
+void DisplayNumberInBinaryNotation(unsigned int inputNumber)
 {
 	int digitsCount = GetDigitsCount(inputNumber);
 	if (inputNumber == 0)
@@ -118,6 +118,6 @@ int main(int argc, char* argv[])
 	}
 
 	unsigned int inputNumber = args->inputNum;
-	displayNumberInBinaryNotation(inputNumber);
+	DisplayNumberInBinaryNotation(inputNumber);
 	return 0;
 }

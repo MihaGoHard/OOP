@@ -1,0 +1,3 @@
+Empty file
+Invalid content in second file
+Usage: input file includes matrix 3x3 
