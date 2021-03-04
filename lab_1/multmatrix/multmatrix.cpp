@@ -32,7 +32,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	if (argc != 3)
 	{
 		std::cout << "Invalid arguments number: " << argc << "\n";
-		std::cout << "Usage: CopyFile.exe <input file name> <output file name>";
+		std::cout << "Usage: CopyFile.exe <first file name> <second file name>";
 		return std::nullopt;
 	}
 	Args args;
@@ -91,7 +91,7 @@ bool GetMatrixFromFile(std::ifstream& input, Matrix& matrix)
 
 	if (line == "" && rows != MATRIX_SIZE)
 	{
-		std::cout << "Empty file\n";
+		std::cout << "Empty file or empty row\n";
 		return false;
 	}
 
@@ -160,12 +160,13 @@ int GetMaxNumLength(const Matrix& matrix)
 
 void PrintMatrix(const Matrix &matrix)
 {
+	int accuracy = 3;
 	int maxNumLength = GetMaxNumLength(matrix);
 	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
 		for (int j = 0; j < MATRIX_SIZE; j++)
 		{
-			std::cout << std::setw(maxNumLength) << std::setprecision(3) << std::fixed << matrix[i][j] << " ";
+			std::cout << std::setw(maxNumLength) << std::setprecision(accuracy) << std::fixed << matrix[i][j] << " ";
 		}
 		std::cout << std::endl;
 	}
