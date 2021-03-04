@@ -28,7 +28,7 @@ uint32_t ParseBytes(const std::string& inputStr)
 	auto value = std::stoull(inputStr);
 	if (value < 0 || value > UINT32_MAX)
 	{
-		throw std::out_of_range("Invalid input number \nUsage: input number is unsigned int");
+		throw std::out_of_range("Invalid input number \nUsage: dec2bin.exe <unsigned int number>");
 	}
 	return static_cast<uint32_t>(value);
 }
@@ -44,7 +44,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	if (argc != 2)
 	{
 		std::cout << "Invalid arguments number: " << argc - 1 << "\n";
-		std::cout << "Usage: CopyFile.exe <number>\n";
+		std::cout << "Usage: dec2bin.exe <unsigned int number>\n";
 		return std::nullopt;
 	}
 
@@ -53,7 +53,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	if (InputIsNotDecNumber(inputStr))
 	{
 		std::cout << "Invalid input\n";
-		std::cout << "Usage: CopyFile.exe <decimal number>\n";
+		std::cout << "Usage: dec2bin.exe <unsigned int number>\n";
 		return std::nullopt;
 	}
 

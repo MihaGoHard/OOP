@@ -1,2 +1,2 @@
 Invalid arguments number: 4
-Usage: CopyFile.exe <number>
+Usage: dec2bin.exe <unsigned int number>

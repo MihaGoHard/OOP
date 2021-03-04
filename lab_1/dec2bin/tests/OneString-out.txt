@@ -1,2 +1,2 @@
 Invalid input
-Usage: CopyFile.exe <decimal number>
+Usage: dec2bin.exe <unsigned int number>
