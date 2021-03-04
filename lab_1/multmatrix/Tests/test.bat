@@ -11,48 +11,64 @@ SET OutputFile="%TEMP%\out.txt"
             
 SET EmptyFile1=".\Tests\empty1.txt"
 SET EmptyFile2=".\Tests\empty2.txt"
+SET EmptyFile3=".\Tests\empty3.txt"
 SET EmptyFilesOut="%~dp0emptyOut.txt"
+SET OneArgFileOut="%~dp0oneArgOut.txt"
 
-REM One file
+
+REM No args
+  %MyProgram% && goto err 
+  ECHO test1 passed	
+
+
+REM One arg
+  %MyProgram% %EmptyFile1% && goto err   
+  ECHO test2 passed	
+
+
+REM Many args
+  %MyProgram% %EmptyFile1% %EmptyFile2% %EmptyFile3% && goto err   
+  ECHO test3 passed	
+
                   
 REM Empty files 
   %MyProgram% %EmptyFile1% %EmptyFile2% > %OutputFile%
   IF NOT %ERRORLEVEL% == 1 GOTO err
   fc %EmptyFilesOut% %OutputFile% > NUL || GOTO err 
-  ECHO test1 passed
-
-
-SET IncorrectFile1=".\Tests\incorrectEmpty1.txt"
-SET EmptyFile2=".\Tests\incorrectEmpty2.txt"
-SET IncorrectEmptyOut="%~dp0incorrectEmptyOut.txt"
-
-REM First-incorrect second-empty 
-  %MyProgram% %IncorrectFile1% %EmptyFile2% > %OutputFile%
-  IF NOT %ERRORLEVEL% == 1 GOTO err
-  fc %IncorrectEmptyOut% %OutputFile% > NUL || GOTO err 
-  ECHO test2 passed
-
-
-SET CorrectFile1=".\Tests\correctEmpty1.txt"
-SET EmptyFile2=".\Tests\correctEmpty2.txt"
-SET CorrectEmptyOut="%~dp0CorrectEmptyOut.txt"
-
-REM First-correct second-empty 
-  %MyProgram% %CorrectFile1% %EmptyFile2% > %OutputFile%
-  IF NOT %ERRORLEVEL% == 1 GOTO err
-  fc %CorrectEmptyOut% %OutputFile% > NUL || GOTO err 
-  ECHO test3 passed
-
-
-SET CorrectFile1=".\Tests\correctIncorrect1.txt"
-SET IncorrectFile2=".\Tests\correctIncorrect2.txt"
-SET CorrectIncorrectOut="%~dp0CorrectIncorrectOut.txt"
-
-REM First-correct second-incorrect 
-  %MyProgram% %CorrectFile1% %IncorrectFile2% > %OutputFile%
-  IF NOT %ERRORLEVEL% == 1 GOTO err
-  fc %CorrectIncorrectOut% %OutputFile% > NUL || GOTO err 
   ECHO test4 passed
+
+
+REM First-invalid second-empty
+  SET InvalidFile1=".\Tests\invalid_empty_1.txt"
+  SET EmptyFile2=".\Tests\invalid_empty_2.txt"
+  SET InvalidEmptyOut="%~dp0invalid_empty_out.txt"
+
+  %MyProgram% %InvalidFile1% %EmptyFile2% > %OutputFile%
+  IF NOT %ERRORLEVEL% == 1 GOTO err
+  fc %InvalidEmptyOut% %OutputFile% > NUL || GOTO err 
+  ECHO test5 passed
+
+
+REM First-valid second-empty
+  SET ValidFile1=".\Tests\valid_empty_1.txt"
+  SET EmptyFile2=".\Tests\valid_empty_2.txt"
+  SET ValidEmptyOut="%~dp0valid_empty_out.txt"
+ 
+  %MyProgram% %ValidFile1% %EmptyFile2% > %OutputFile%
+  IF NOT %ERRORLEVEL% == 1 GOTO err
+  fc %ValidEmptyOut% %OutputFile% > NUL || GOTO err 
+  ECHO test6 passed
+
+
+REM First-valid second-invalid
+  SET ValidFile1=".\Tests\valid_invalid_1.txt"
+  SET InvalidFile2=".\Tests\valid_invalid_2.txt"
+  SET ValidInvalidOut="%~dp0valid_invalid_out.txt"
+ 
+  %MyProgram% %ValidFile1% %InvalidFile2% > %OutputFile%
+  IF NOT %ERRORLEVEL% == 1 GOTO err
+  fc %ValidInvalidOut% %OutputFile% > NUL || GOTO err 
+  ECHO test7 passed
 
 
 SET File1_2x3_2x3=".\Tests\m_2x3_2x3_1.txt"
@@ -63,7 +79,7 @@ REM matrices 2X3 2X3
   %MyProgram% %File1_2x3_2x3% %File2_2x3_2x3% > %OutputFile%
   IF NOT %ERRORLEVEL% == 1 GOTO err
   fc %OutFile_2x3_2x3% %OutputFile% > NUL || GOTO err 
-  ECHO test5 passed
+  ECHO test8 passed
 
 
 SET File1_3x3_2x3=".\Tests\m_3x3_2x3_1.txt"
@@ -74,7 +90,7 @@ REM matrices 3X3 2X3
   %MyProgram% %File1_3x3_2x3% %File2_3x3_2x3% > %OutputFile%
   IF NOT %ERRORLEVEL% == 1 GOTO err
   fc %OutFile_3x3_2x3% %OutputFile% > NUL || GOTO err 
-  ECHO test6 passed
+  ECHO test9 passed
 
 
 SET File1_3x3_4x3=".\Tests\m_3x3_4x3_1.txt"
@@ -85,7 +101,7 @@ REM matrices 3X3 4X3
   %MyProgram% %File1_3x3_4x3% %File2_3x3_4x3% > %OutputFile%
   IF NOT %ERRORLEVEL% == 1 GOTO err
   fc %OutFile_3x3_4x3% %OutputFile% > NUL || GOTO err 
-  ECHO test7 passed
+  ECHO test10 passed
 
 
 SET File1_2x4_3x3=".\Tests\m_2x4_3x3_1.txt"
@@ -96,7 +112,7 @@ REM matrices 2X4 3X3
   %MyProgram% %File1_2x4_3x3% %File2_2x4_3x3% > %OutputFile%
   IF NOT %ERRORLEVEL% == 1 GOTO err
   fc %OutFile_2x4_3x3% %OutputFile% > NUL || GOTO err 
-  ECHO test8 passed
+  ECHO test11 passed
 
 
 SET File1_3x3_3x3=".\Tests\m_3x3_3x3_1.txt"
@@ -107,7 +123,7 @@ REM matrices 3X3 3X3
   %MyProgram% %File1_3x3_3x3% %File2_3x3_3x3% > %OutputFile%
   IF %ERRORLEVEL% == 1 GOTO err
   fc %OutFile_3x3_3x3% %OutputFile% > NUL || GOTO err 
-  ECHO test9 passed
+  ECHO test12 passed
 
 
 :: tests are succes                		

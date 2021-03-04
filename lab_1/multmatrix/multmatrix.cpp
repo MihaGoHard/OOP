@@ -32,7 +32,7 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	if (argc != 3)
 	{
 		std::cout << "Invalid arguments number: " << argc << "\n";
-		std::cout << "Usage: CopyFile.exe <first file name> <second file name>";
+		std::cout << "Usage: multmatrix.exe <first file name> <second file name>";
 		return std::nullopt;
 	}
 	Args args;
@@ -125,11 +125,11 @@ Matrix MultiplyMatrices(const Matrices &matrices)
 {
 	Matrix resultMatrix = {0};
 
-	for (int rows = 0; rows < MATRIX_SIZE; rows++)
+	for (int rows = 0; rows < MATRIX_SIZE; ++rows)
 	{
-		for (int columns = 0; columns < MATRIX_SIZE; columns++)
+		for (int columns = 0; columns < MATRIX_SIZE; ++columns)
 		{
-			for (int inner = 0; inner < MATRIX_SIZE; inner++)
+			for (int inner = 0; inner < MATRIX_SIZE; ++inner)
 			{
 				resultMatrix[rows][columns] += matrices.matrixA[rows][inner] * matrices.matrixB[inner][columns];
 			}
@@ -143,9 +143,9 @@ int GetMaxNumLength(const Matrix& matrix)
 {
 	int maxNumLength = 0;
 	int offsetIndex = 3;
-	for (int i = 0; i < MATRIX_SIZE; i++)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < MATRIX_SIZE; j++)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
 			int currNumLength = std::to_string(matrix[i][j]).length() - offsetIndex; 
 			if (currNumLength > maxNumLength)
