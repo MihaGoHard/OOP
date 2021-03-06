@@ -9,18 +9,6 @@
 const unsigned int MATRIX_SIZE = 3;
 using Matrix = std::array<std::array<double, MATRIX_SIZE>, MATRIX_SIZE>;
 
-struct Matrices
-{
-	Matrix matrixA = {0};
-	Matrix matrixB = {0};
-};
-
-struct InputStreams
-{
-	std::ifstream firstInput;
-	std::ifstream secondInput;
-};
-
 struct Args
 {
 	std::string firstFileName;
@@ -41,17 +29,17 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 	return args;
 }
 
-bool OpenStreams(InputStreams& streams, Args& args)
+bool OpenStreams(std::ifstream &firstInput, std::ifstream &secondInput, const Args& args)
 {
-	streams.firstInput.open(args.firstFileName);
-	if (!streams.firstInput.is_open())
+	firstInput.open(args.firstFileName);
+	if (!firstInput.is_open())
 	{
 		std::cout << "Failed to open '" << args.firstFileName << "' for reading\n";
 		return false;
 	}
 
-	streams.secondInput.open(args.secondFileName);
-	if (!streams.secondInput.is_open())
+	secondInput.open(args.secondFileName);
+	if (!secondInput.is_open())
 	{
 		std::cout << "Failed to open '" << args.secondFileName << "' for reading\n";
 		return false;
@@ -104,15 +92,15 @@ bool GetMatrixFromFile(std::ifstream& input, Matrix& matrix)
 }
 
 
-bool GetMatrices(InputStreams& streams, Matrices& matrices, Args& args)
+bool GetMatrices(std::ifstream& firstInput, std::ifstream& secondInput, Matrix& matrixA, Matrix& matrixB)
 {
-	if (!GetMatrixFromFile(streams.firstInput, matrices.matrixA))
+	if (!GetMatrixFromFile(firstInput, matrixA))
 	{
 		std::cout << "Invalid content in first file\n";
 		std::cout << "Usage: input file includes matrix 3x3 \n";
 		return false;
 	}
-	if (!GetMatrixFromFile(streams.secondInput, matrices.matrixB))
+	if (!GetMatrixFromFile(secondInput, matrixB))
 	{
 		std::cout << "Invalid content in second file\n";
 		std::cout << "Usage: input file includes matrix 3x3 \n";
@@ -121,7 +109,7 @@ bool GetMatrices(InputStreams& streams, Matrices& matrices, Args& args)
 	return true;
 }
 
-Matrix MultiplyMatrices(const Matrices &matrices)
+Matrix MultiplyMatrices(const Matrix& matrixA, const Matrix& matrixB)
 {
 	Matrix resultMatrix = {0};
 
@@ -131,7 +119,7 @@ Matrix MultiplyMatrices(const Matrices &matrices)
 		{
 			for (int inner = 0; inner < MATRIX_SIZE; ++inner)
 			{
-				resultMatrix[rows][columns] += matrices.matrixA[rows][inner] * matrices.matrixB[inner][columns];
+				resultMatrix[rows][columns] += matrixA[rows][inner] * matrixB[inner][columns];
 			}
 		}
 	}
@@ -162,9 +150,9 @@ void PrintMatrix(const Matrix &matrix)
 {
 	int accuracy = 3;
 	int maxNumLength = GetMaxNumLength(matrix);
-	for (int i = 0; i < MATRIX_SIZE; i++)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < MATRIX_SIZE; j++)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
 			std::cout << std::setw(maxNumLength) << std::setprecision(accuracy) << std::fixed << matrix[i][j] << " ";
 		}
@@ -180,21 +168,23 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	InputStreams streams;
+	std::ifstream firstInput;
+	std::ifstream secondInput;
 
-	if (!OpenStreams(streams, *args))
+	if (!OpenStreams(firstInput, secondInput, *args))
 	{
 		return 1;
 	}
 
-	Matrices matrices;
+	Matrix matrixA = { 0 };
+	Matrix matrixB = { 0 }; 
 
-	if (!GetMatrices(streams, matrices, *args))
+	if (!GetMatrices(firstInput, secondInput, matrixA, matrixB))
 	{
 		return 1;
 	}
 
-	Matrix matrixC = MultiplyMatrices(matrices);
+	Matrix matrixC = MultiplyMatrices(matrixA, matrixB);
 
 	PrintMatrix(matrixC);
 

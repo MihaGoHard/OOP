@@ -50,12 +50,12 @@ std::optional<Args> ParseArgs(int argc, char* argv[])
 
 	std::string inputStr = argv[1];
 
-	if (InputIsNotDecNumber(inputStr))
+	/*if (InputIsNotDecNumber(inputStr))
 	{
 		std::cout << "Invalid input\n";
 		std::cout << "Usage: dec2bin.exe <unsigned int number>\n";
 		return std::nullopt;
-	}
+	}*/
 
 	Args args;
 	
