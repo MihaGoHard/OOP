@@ -1,11 +1,14 @@
 #include "EncodeHtmlPrintResult.h"
+#include <vector>
+
+using namespace std;
 
 vector<char> specials = { '<', '>', '\'', '"', '&' };
 vector<string> entities = { "&lt;", "&gt;", "&apos;", "&quot;", "&amp;" };
 
 string EncodeHtml(const string& html)
 {
-	string decodeStr;
+	string decodeStr; // usingnamespace include раскидать по cpp; по size_t; range_for для перебора; массив пар; массивы const namespace аххака разика
 	for (int i = 0; i < int(html.length()); ++i)
 	{
 		vector<char>::iterator specIter = find(specials.begin(), specials.end(), html[i]);

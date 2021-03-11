@@ -1,9 +1,9 @@
 #include "EncodeHtmlPrintResult.h"
 
+using namespace std;
+
 int main()
 {
-	GetStringPrintEncodeHtml(std::cin, std::cout);
+	GetStringPrintEncodeHtml(cin, cout);
 	return 0;
 }
-
-

@@ -11,20 +11,11 @@ int main()
 		return 1;
 	}
 
-	if (!TransformVector(*numsVector))
-	{
-		return 1;
-	}
+	TransformVector(*numsVector);
 
-	if (!SortVector(*numsVector))
-	{
-		return 1;
-	}
+	SortVector(*numsVector);
 
-	if (!PrintVector(*numsVector))
-	{
-		return 1;
-	}
+	PrintVector(*numsVector);
 
 	return 0;
 }

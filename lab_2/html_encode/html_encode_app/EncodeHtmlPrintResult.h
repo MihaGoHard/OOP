@@ -1,11 +1,9 @@
 #pragma once
-#include <algorithm>
+#include <algorithm> 
 #include <iostream>
-#include <iterator>
-#include <sstream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
 void GetStringPrintEncodeHtml(istream& input, ostream& output);
+string EncodeHtml(const string& html);

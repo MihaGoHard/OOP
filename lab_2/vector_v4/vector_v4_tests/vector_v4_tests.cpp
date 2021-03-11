@@ -1,36 +1,11 @@
 #include <iostream>
 
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#define CATCH_CONFIG_MAIN  
 #include <catch2/catch.hpp>
 
-#include "../vector_v4_app/GetPrintVector.cpp"
-#include "../vector_v4_app/TransformVector.cpp"
+#include "../vector_v4_app/GetPrintVector.h"
+#include "../vector_v4_app/TransformVector.h"
 
-TEST_CASE("Get vector checking")
-{
-	SECTION("Get vector from empty input")
-	{
-		std::istringstream input("");
-		auto vector = GetVectorFromStream(input);
-		CHECK(vector == std::nullopt);
-	}
-
-	SECTION("Get vector from invalid input")
-	{
-		std::istringstream input("e 5.4 r 8");
-		auto vector = GetVectorFromStream(input);
-		std::optional<std::vector<double>> resultVector = std::nullopt;
-		CHECK(vector == std::nullopt);
-	}
-
-	SECTION("Get vector from valid input")
-	{
-		std::istringstream input("3  5 2  21  78");
-		auto outOptVector = GetVectorFromStream(input);
-		CHECK(outOptVector != std::nullopt);
-	}
-}
-	
 
 
 TEST_CASE("Transform vector checking")
@@ -39,8 +14,10 @@ TEST_CASE("Transform vector checking")
 
 	SECTION("Empty vector")
 	{
+		std::vector<double> emptyVector = {};
 		numVector.clear();
-		CHECK(TransformVector(numVector) == false);
+		TransformVector(numVector);
+		CHECK(numVector == emptyVector);
 	}
 
 	SECTION("Devide every elem of vector on half of max-element")
@@ -56,10 +33,12 @@ TEST_CASE("Sort vector checking")
 {
 	std::vector<double> numVector = { -2, 4.2, 6.7, 8.4, 8.4 };
 
-	SECTION("Empty vector")
+	SECTION("Empty vector")  
 	{
+		std::vector<double> emptyVector = {};
 		numVector.clear();
-		CHECK(SortVector(numVector) == false);
+		SortVector(numVector);
+		CHECK(numVector == emptyVector);
 	}
 
 	SECTION("Sort vector in ascending order")

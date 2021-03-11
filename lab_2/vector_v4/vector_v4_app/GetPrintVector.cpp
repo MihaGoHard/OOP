@@ -1,4 +1,6 @@
 #include "./GetPrintVector.h"
+#include <iomanip>
+#include <sstream>
 
 std::optional<std::vector<double>> GetVectorFromStream(std::istream& inputStream)
 {
@@ -11,21 +13,15 @@ std::optional<std::vector<double>> GetVectorFromStream(std::istream& inputStream
 		std::cout << "Vector record error\n";
 		return std::nullopt;
 	}
+
 	inputStream.clear();
 	return numVector;
 }
 
-bool PrintVector(const std::vector<double>& numVector)
-{
-	if (numVector.size() == 0)
-	{
-		std::cout << "Empty vector\n";
-		return false;
-	}
-	
+void PrintVector(const std::vector<double>& numVector)
+{	
 	for (const auto& i : numVector)
 	{
 		std::cout << std::fixed << std::setprecision(3) << i << " ";
 	}
-	return true;
 }
