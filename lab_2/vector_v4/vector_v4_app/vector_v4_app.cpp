@@ -1,32 +1,30 @@
-#include <iostream>
 #include "GetPrintVector.h"
 #include "TransformVector.h"
-
+#include <iostream>
 
 int main()
 {
-    auto numsVector = GetVectorFromStream(std::cin);
-    if (!numsVector)
-    {
-        std::cout << "Invalid input\n";
-        return 1;
-    }
-
-    if (!TransformVector(*numsVector))
+	auto numsVector = GetVectorFromStream(std::cin);
+	if (!numsVector)
 	{
-	    return	1;
+		std::cout << "Invalid input\n";
+		return 1;
+	}
+
+	if (!TransformVector(*numsVector))
+	{
+		return 1;
 	}
 
 	if (!SortVector(*numsVector))
 	{
-	    return	1;
+		return 1;
 	}
 
-    if (!PrintVector(*numsVector))
+	if (!PrintVector(*numsVector))
 	{
 		return 1;
 	}
-    
-    return 0;
-}
 
+	return 0;
+}

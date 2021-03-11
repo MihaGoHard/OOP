@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_MAIN
-#include "HTML_Decode/HTML_Decode_App/EncodeHtmlPrintResult.cpp"
+#include "html_encode/html_encode_app/EncodeHtmlPrintResult.h"
+#include "html_encode/html_encode_app/EncodeHtmlPrintResult.cpp"
 #include <catch2/catch.hpp>
 
 TEST_CASE("Encode html from line")
