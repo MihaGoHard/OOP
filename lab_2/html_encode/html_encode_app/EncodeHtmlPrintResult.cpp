@@ -1,25 +1,34 @@
 #include "EncodeHtmlPrintResult.h"
+#include <array>
+#include <vector>
 
-vector<char> specials = { '<', '>', '\'', '"', '&' };
-vector<string> entities = { "&lt;", "&gt;", "&apos;", "&quot;", "&amp;" };
+using namespace std;
+
+namespace
+{
+const vector<pair<char, string>> encodeMap{ { '<', "&lt;"s }, { '>', "&gt;"s }, { '\'', "&apos;"s }, { '"', "&quot;"s }, { '&', "&amp;"s } };
+}
 
 string EncodeHtml(const string& html)
 {
-	string decodeStr;
-	for (int i = 0; i < int(html.length()); ++i)
+	string encodeStr; 
+	for (auto ch : html)
 	{
-		vector<char>::iterator specIter = find(specials.begin(), specials.end(), html[i]);
-		if (specIter != specials.end())
+		auto specIter = find_if(encodeMap.begin(), encodeMap.end(), [&](auto& pairChStr) {
+			return pairChStr.first == ch;
+		});
+
+		if (specIter != encodeMap.end())
 		{
-			decodeStr += entities[specIter - specials.begin()];
+			encodeStr += specIter->second;
 		}
 		else
 		{
-			decodeStr += html[i];
+			encodeStr += ch;
 		}
 	}
 
-	return decodeStr;
+	return encodeStr;
 }
 
 void GetStringPrintEncodeHtml(istream& input, ostream& output)

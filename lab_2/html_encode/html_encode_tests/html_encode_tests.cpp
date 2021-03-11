@@ -1,7 +1,8 @@
 #define CATCH_CONFIG_MAIN
-#include "html_encode/html_encode_app/EncodeHtmlPrintResult.h"
-#include "html_encode/html_encode_app/EncodeHtmlPrintResult.cpp"
 #include <catch2/catch.hpp>
+#include "html_encode/html_encode_app/EncodeHtmlPrintResult.h"
+
+using namespace std;
 
 TEST_CASE("Encode html from line")
 {
@@ -19,7 +20,7 @@ TEST_CASE("Encode html from line")
 
 	SECTION("Change the string with specials")
 	{
-		string inStr = "Cat <says> \"\Meow\"\. M&M's";
+		string inStr = "Cat <says> \"Meow\". M&M's";
 		string outStr = "Cat &lt;says&gt; &quot;Meow&quot;. M&amp;M&apos;s";
 		CHECK(EncodeHtml(inStr) == outStr);
 	}
@@ -29,7 +30,7 @@ TEST_CASE("Encode html from input")
 {
 	SECTION("Encode one line")
 	{
-		istringstream input("Cat <says> \"\Meow\"\. M&M's");
+		istringstream input("Cat <says> \"Meow\". M&M's");
 		stringstream output;
 		GetStringPrintEncodeHtml(input, output);
 		CHECK(output.str() == "Cat &lt;says&gt; &quot;Meow&quot;. M&amp;M&apos;s");
@@ -38,7 +39,7 @@ TEST_CASE("Encode html from input")
 
 	SECTION("Encode some lines")
 	{
-		istringstream input("Cat <says> \"\Meow\"\. M&M's \n Dog <says> \"\Wof\"\. M&M's");
+		istringstream input("Cat <says> \"Meow\". M&M's \n Dog <says> \"Wof\". M&M's");
 		stringstream output;
 		GetStringPrintEncodeHtml(input, output);
 		CHECK(output.str() == "Cat &lt;says&gt; &quot;Meow&quot;. M&amp;M&apos;s \n Dog &lt;says&gt; &quot;Wof&quot;. M&amp;M&apos;s");

@@ -18,5 +18,8 @@
     <ClCompile Include="html_encode_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\html_encode_app\EncodeHtmlPrintResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
