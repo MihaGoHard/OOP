@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
-#include "html_encode/html_encode_app/EncodeHtmlPrintResult.h"
+#include "../html_encode_app/EncodeHtmlPrintResult.h"
 
 using namespace std;
 
