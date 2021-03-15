@@ -11,8 +11,9 @@ const vector<pair<char, string>> encodeMap{ { '<', "&lt;"s }, { '>', "&gt;"s }, 
 
 string EncodeHtml(const string& html)
 {
-	string encodeStr; 
-	for (auto ch : html)
+	string encodeStr;
+
+	for(auto &ch : html)
 	{
 		auto specIter = find_if(encodeMap.begin(), encodeMap.end(), [&](auto& pairChStr) {
 			return pairChStr.first == ch;

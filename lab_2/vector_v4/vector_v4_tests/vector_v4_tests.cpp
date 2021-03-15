@@ -7,6 +7,7 @@
 #include "../vector_v4_app/TransformVector.h"
 
 
+
 TEST_CASE("Transform vector checking")
 {
 	std::vector<double> numVector = { -2, 4.2, 6.7, 8.4, 8.4};
