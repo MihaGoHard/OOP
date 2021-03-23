@@ -67,7 +67,7 @@ TEST_CASE("Sieve vector filling")
 	}
 }
 
-TEST_CASE("Set filling from siev-vector")
+TEST_CASE("Set filling from sieve-vector")
 {
 	vector<bool> sieveVector = { 0, 0 };
 

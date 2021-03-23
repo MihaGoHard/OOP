@@ -6,14 +6,14 @@ using namespace std;
 
 namespace
 {
-const vector<pair<char, string>> encodeMap{ { '<', "&lt;"s }, { '>', "&gt;"s }, { '\'', "&apos;"s }, { '"', "&quot;"s }, { '&', "&amp;"s } };
+	const vector<pair<char, string>> encodeMap{ { '<', "&lt;"s }, { '>', "&gt;"s }, { '\'', "&apos;"s }, { '"', "&quot;"s }, { '&', "&amp;"s } };
 }
 
 string EncodeHtml(const string& html)
 {
 	string encodeStr;
 
-	for(auto &ch : html)
+	for (auto& ch : html)
 	{
 		auto specIter = find_if(encodeMap.begin(), encodeMap.end(), [&](auto& pairChStr) {
 			return pairChStr.first == ch;
