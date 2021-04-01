@@ -18,7 +18,7 @@ bool CCar::StartEngine()
 
 bool CCar::StopEngine()
 {
-	if (m_engineIsTurnedOn && (m_gear == Gear::Neutral) && (m_speed == zeroSpeed))
+	if (m_engineIsTurnedOn && (m_gear == Gear::Neutral) && (m_speed == 0))
 	{
 		m_engineIsTurnedOn = false;
 		return true;
@@ -73,11 +73,11 @@ int CCar::GetSpeed() const
 
 Direction CCar::GetDirection() const
 {
-	if (m_speed < zeroSpeed)
+	if (m_speed < 0)
 	{
 		return Direction::Back;
 	}
-	if (m_speed > zeroSpeed)
+	if (m_speed > 0)
 	{
 		return Direction::Forward;
 	}

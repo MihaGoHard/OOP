@@ -12,7 +12,7 @@ bool GearInSpeedRange(Gear gear, int speed)
 	switch (gear)
 	{
 	case Gear::Reverse:
-		return (speed == zeroSpeed);
+		return (speed == 0);
 
 	case Gear::One:
 		return InSpeedLimit(speed, oneSpeedLimits);
@@ -42,9 +42,9 @@ bool IsRightGearDirection(Gear gear, int in_speed, int m_speed, Direction direct
 		switch (direction)
 		{
 		case Direction::Back:
-			return (in_speed >= m_speed && in_speed <= zeroSpeed);
+			return (in_speed >= m_speed && in_speed <= 0);
 		case Direction::Forward: 
-			return (in_speed <= m_speed && in_speed >= zeroSpeed);
+			return (in_speed <= m_speed && in_speed >= 0);
 		default:
 			return false;
 		}

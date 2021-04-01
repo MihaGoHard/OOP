@@ -2,28 +2,12 @@
 
 string DirectionToString(Direction direction)
 {
-	map<Direction, string> directionTitles = {
-		{ Direction::Back, "back" },
-		{ Direction::Forward, "forward" },
-		{ Direction::OnPlace, "on place" }
-	};
-
-	return directionTitles[direction];
+	return directionTitles.at(direction);
 }
 
 string GearToString(Gear gear)
 {
-	map<Gear, string> gearTitles = {
-		{ Gear::Reverse, "reverse" },
-		{ Gear::Neutral, "neutral" },
-		{ Gear::One, "first" },
-		{ Gear::Two, "second" },
-		{ Gear::Three, "third" },
-		{ Gear::Four, "fourth" },
-		{ Gear::Five, "fifth" },
-	};
-
-	return gearTitles[gear];
+	return gearTitles.at(gear);
 }
 
 bool GetNumberFromStr(string inputStr, int& inputNum)
@@ -50,37 +34,28 @@ bool GetGearFromArg(string inputStr, Gear& gear)
 		return false;
 	}
 
-	map<int, Gear> gearTitles = {
-		{ -1, Gear::Reverse },
-		{ 0, Gear::Neutral },
-		{ 1, Gear::One },
-		{ 2, Gear::Two },
-		{ 3, Gear::Three },
-		{ 4, Gear::Four },
-		{ 5, Gear::Five },
-	};
-
-	if (gearTitles.find(inputNum) == gearTitles.end())
+	if (intGear.find(inputNum) == intGear.end())
 	{
 		cout << "incorrect gear number\n";
 		return false;
 	}
 
-	gear = gearTitles[inputNum];
+	gear = intGear.at(inputNum);
 
 	return true;
 }
 
-bool GetSpeedFromArg(string inputStr, int& speed)
+bool GetSpeedFromArg(string inputStr, int& speed, Direction direction)
 {
 	if (!GetNumberFromStr(inputStr, speed))
 	{
 		return false;
-	};
-	if (speed < zeroSpeed)
+	}
+	if (speed < 0 && direction != Direction::Back)
 	{
 		cout << "The speed cannot be negative\n";
 		return false;
 	}
+	speed = unsigned(speed);
 	return true;
 }

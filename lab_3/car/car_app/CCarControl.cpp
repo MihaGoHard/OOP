@@ -48,7 +48,15 @@ bool CCarControl::HandleCommand()
 
 bool CCarControl::PrintCarInfo()
 {
-	m_output << "Engine: " << ((m_car.EngineIsTurnedOn()) ? ("turned on\n") : ("turned off\n"));
+	if (m_car.EngineIsTurnedOn())
+	{
+		m_output << "Engine: turned on\n";
+	}
+	else
+	{
+		m_output << "Engine: turned off\n";
+	}
+	
 	m_output << "Speed: " << m_car.GetSpeed() << "\n";
 	m_output << "Direction: " << DirectionToString(m_car.GetDirection()) << "\n";
 	m_output << "Gear: " << GearToString(m_car.GetGear()) << "\n";
@@ -57,14 +65,27 @@ bool CCarControl::PrintCarInfo()
 
 bool CCarControl::StartEngine()
 {
-	m_car.StartEngine() ? m_output << "Engine started successfully\n" : m_output << "Engine is already running\n";
-
+	if (m_car.StartEngine())
+	{
+		m_output << "Engine started successfully\n";
+	}
+	else
+	{
+		m_output << "Engine is already running\n";
+	}
 	return true;
 }
 
 bool CCarControl::StopEngine()
 {
-	m_car.StopEngine() ? m_output << "Engine stoped successfully\n" : m_output << "Cant stop the engine\n";
+	if (m_car.StopEngine())
+	{
+		m_output << "Engine stoped successfully\n";
+	}
+	else
+	{
+		m_output << "Cant stop the engine\n";
+	}
 
 	return true;
 }
@@ -74,10 +95,18 @@ bool CCarControl::SetGear(istream& args)
 {
 	string inputStr;
 	args >> inputStr;
-	Gear gear;
+	Gear gear = Gear::Neutral;
+
 	if (GetGearFromArg(inputStr, gear))
 	{
-		m_car.SetGear(gear) ? (m_output << gear << " gear is selected\n") : (m_output << "gear didn`t change\n"); 
+		if (m_car.SetGear(gear))
+		{
+			m_output << GearToString(gear) << " gear is selected\n";
+		}
+		else
+		{
+			m_output << "gear didn`t change\n";
+		} 
 	}
 	
 	return true;
@@ -89,9 +118,17 @@ bool CCarControl::SetSpeed(istream& args)
 	string inputStr;
 	args >> inputStr;
 	int inSpeed = 0;
-	if (GetSpeedFromArg(inputStr, inSpeed))
+	Direction direction = m_car.GetDirection();
+	if (GetSpeedFromArg(inputStr, inSpeed, direction))
 	{
-		m_car.SetSpeed(inSpeed) ? (m_output << inSpeed << " speed is selected\n") : (m_output << "speed didn`t change\n");
+		if (m_car.SetSpeed(inSpeed))
+		{
+			m_output << inSpeed << " speed is selected\n";
+		}
+		else
+		{
+			m_output << "speed didn`t change\n";
+		}
 	}
 
 	return true;

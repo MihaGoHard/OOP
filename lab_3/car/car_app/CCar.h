@@ -5,14 +5,14 @@
 
 using namespace std;
 
-enum Direction
+enum class Direction
 {
 	Forward,
 	Back,
 	OnPlace
 };
 
-enum Gear
+enum class Gear
 {
 	Reverse = -1,
 	Neutral = 0,
@@ -24,7 +24,6 @@ enum Gear
 };
 
 const pair<int, int> reverseSpeedLimits = { -20, 0 };
-const int zeroSpeed = 0;
 const pair<int, int> oneSpeedLimits = { 0, 30 };
 const pair<int, int> twoSpeedLimits = { 20, 50 };
 const pair<int, int> threeSpeedLimits = { 30, 60 };
@@ -57,26 +56,22 @@ private:
 };
 
 
-
-
- 
 //show (-speed) +
+
 //getGear const +
 
 //class scoped enum +, 
 
-//find  
+//map (at, find) +  
 
-//m_name   smallLetter +
+//m_name  smallLetter +
 
-//unsigned 
+//unsigned speed on reverse +
 
 //GetDirection +
 
-//static map  , 29 const &
+//zeroSpeed delete +
 
-//zeroSpeed delete
+//вывод заменить на if else +
 
-//вывод заменить на if else
-
-// 17 string remote /**/
+//types
