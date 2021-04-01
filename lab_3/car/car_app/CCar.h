@@ -12,7 +12,6 @@ enum Direction
 	OnPlace
 };
 
-
 enum Gear
 {
 	Reverse = -1,
@@ -43,16 +42,41 @@ public:
 	bool EngineIsTurnedOn() const;
 
 	bool SetGear(Gear gear);
-	Gear GetGear();
+	Gear GetGear() const;
 
 	int GetSpeed() const;
-	int SetSpeed(int speed);
+	bool SetSpeed(int speed);
 
 	Direction GetDirection() const;
 
 private:
-	bool m_EngineIsTurnedOn = false;
+	bool m_engineIsTurnedOn = false;
 	Gear m_gear = Gear::Neutral;
 
 	int m_speed = 0;
 };
+
+
+
+
+ 
+//show (-speed) +
+//getGear const +
+
+//class scoped enum +, 
+
+//find  
+
+//m_name   smallLetter +
+
+//unsigned 
+
+//GetDirection +
+
+//static map  , 29 const &
+
+//zeroSpeed delete
+
+//вывод заменить на if else
+
+// 17 string remote /**/

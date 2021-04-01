@@ -2,5 +2,5 @@
 #include "CCar.h"
 #include <iostream>
 
-bool gearInSpeedRange(Gear gear, int speed);
-bool isRightGearDirection(Gear gear, int in_speed, int m_speed, Direction direction);
+bool GearInSpeedRange(Gear gear, int speed);
+bool IsRightGearDirection(Gear gear, int in_speed, int m_speed, Direction direction);

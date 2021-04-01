@@ -1,6 +1,6 @@
 #include "CCarControl.h"
 #include "CCar.h"
-#include <iostream>
+
 using namespace std;
 
 int main()

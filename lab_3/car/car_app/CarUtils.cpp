@@ -2,12 +2,12 @@
 #include "CCar.h"
 using namespace std;
 
-bool inSpeedLimit(int speed, pair<int, int> limits)
+bool InSpeedLimit(int speed, pair<int, int> limits)
 {
 	return (speed >= limits.first && speed <= limits.second);
 }
 
-bool gearInSpeedRange(Gear gear, int speed)
+bool GearInSpeedRange(Gear gear, int speed)
 {
 	switch (gear)
 	{
@@ -15,26 +15,26 @@ bool gearInSpeedRange(Gear gear, int speed)
 		return (speed == zeroSpeed);
 
 	case Gear::One:
-		return inSpeedLimit(speed, oneSpeedLimits);
+		return InSpeedLimit(speed, oneSpeedLimits);
 
 	case Gear::Two:
-		return inSpeedLimit(speed, twoSpeedLimits);
+		return InSpeedLimit(speed, twoSpeedLimits);
 
 	case Gear::Three:
-		return inSpeedLimit(speed, threeSpeedLimits);
+		return InSpeedLimit(speed, threeSpeedLimits);
 		
 	case Gear::Four:
-		return inSpeedLimit(speed, fourSpeedLimits);
+		return InSpeedLimit(speed, fourSpeedLimits);
 
 	case Gear::Five:
-		return inSpeedLimit(speed, fiveSpeedLimits);
+		return InSpeedLimit(speed, fiveSpeedLimits);
 
 	default:
 		return true;
 	}
 }
 
-bool isRightGearDirection(Gear gear, int in_speed, int m_speed, Direction direction)
+bool IsRightGearDirection(Gear gear, int in_speed, int m_speed, Direction direction)
 {
 	switch (gear)
 	{
@@ -50,10 +50,10 @@ bool isRightGearDirection(Gear gear, int in_speed, int m_speed, Direction direct
 		}
 
 	case Gear::Reverse:
-		return inSpeedLimit(in_speed, reverseSpeedLimits);
+		return InSpeedLimit(in_speed, reverseSpeedLimits);
 
 	default:
-		return (gearInSpeedRange(gear, in_speed));
+		return (GearInSpeedRange(gear, in_speed));
 	}
 
 	return true;

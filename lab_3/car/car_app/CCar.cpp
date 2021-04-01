@@ -8,9 +8,9 @@ CCar::CCar()
 
 bool CCar::StartEngine()
 {
-	if (!m_EngineIsTurnedOn)
+	if (!m_engineIsTurnedOn)
 	{
-		m_EngineIsTurnedOn = true;
+		m_engineIsTurnedOn = true;
 		return true;
 	}
 	return false;
@@ -18,9 +18,9 @@ bool CCar::StartEngine()
 
 bool CCar::StopEngine()
 {
-	if (m_EngineIsTurnedOn && (m_gear == Gear::Neutral) && (m_speed == zeroSpeed))
+	if (m_engineIsTurnedOn && (m_gear == Gear::Neutral) && (m_speed == zeroSpeed))
 	{
-		m_EngineIsTurnedOn = false;
+		m_engineIsTurnedOn = false;
 		return true;
 	}
 	return false;
@@ -28,13 +28,13 @@ bool CCar::StopEngine()
 
 bool CCar::EngineIsTurnedOn() const
 {
-	return m_EngineIsTurnedOn;
+	return m_engineIsTurnedOn;
 }
 
 
 bool CCar::SetGear(Gear gear)
 {
-	if (m_EngineIsTurnedOn && gearInSpeedRange(gear, m_speed))
+	if (m_engineIsTurnedOn && GearInSpeedRange(gear, m_speed))
 	{
 		m_gear = gear;
 		return true;
@@ -42,13 +42,13 @@ bool CCar::SetGear(Gear gear)
 	return false;
 }
 
-Gear CCar::GetGear()
+Gear CCar::GetGear() const
 {
 	return m_gear;
 }
 
 
-int CCar::SetSpeed(int module_speed)
+bool CCar::SetSpeed(int module_speed)
 {
 	int speed = module_speed;
 	int negativeIndex = -1;
@@ -58,7 +58,7 @@ int CCar::SetSpeed(int module_speed)
 		speed = speed * negativeIndex;
 	}
 
-	if (m_EngineIsTurnedOn && isRightGearDirection(m_gear, speed, m_speed, GetDirection()))
+	if (m_engineIsTurnedOn && IsRightGearDirection(m_gear, speed, m_speed, GetDirection()))
 	{
 		m_speed = speed;
 		return true;
