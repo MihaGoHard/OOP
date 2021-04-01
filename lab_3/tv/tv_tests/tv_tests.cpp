@@ -99,7 +99,7 @@ TEST_CASE("CRemoteControl")
 	{
 		CTVSet tv;
 
-		string inStr = "Switch on\nSwitch off\n";
+		string inStr = "SwitchOn\nSwitchOff\n";
 
 		istringstream input(inStr);
 		ostringstream output;
@@ -119,7 +119,7 @@ TEST_CASE("CRemoteControl")
 		CTVSet tv;
 		tv.SwitchOn();
 
-		string inStr = "Set channel 2\n";
+		string inStr = "SetChannel 2\n";
 
 		istringstream input(inStr);
 		ostringstream output;
@@ -130,17 +130,18 @@ TEST_CASE("CRemoteControl")
 		CHECK(tv.GetChannel() == 2);
 	}
 
-	SECTION("Set previous channel")
+	SECTION("SetPreviousChannel")
 	{
 		CTVSet tv;
 		tv.SwitchOn();
 
-		string inStr = "Set channel 2\nSet channel 3\nSet previous channel\n";
+		string inStr = "SetChannel 2\nSetChannel 3\nSetPreviousChannel\n";
 
 		istringstream input(inStr);
 		ostringstream output;
 
 		CRemoteControl tvControl(tv, input, output);
+		tvControl.HandleCommand();
 		tvControl.HandleCommand();
 		tvControl.HandleCommand();
 

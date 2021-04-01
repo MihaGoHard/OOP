@@ -10,16 +10,16 @@ CRemoteControl::CRemoteControl(CTVSet& tv, istream& input, ostream& output)
 		  { "Info", [this](istream& strm) {
 			   return Info();
 		   } },
-		  { "Switch On", [this](istream& strm) {
+		  { "SwitchOn", [this](istream& strm) {
 			   return SwitchOn();
 		   } },
-		  { "Switch Off", [this](istream& strm) {
+		  { "SwitchOff", [this](istream& strm) {
 			   return SwitchOff();
 		   } },
-		  { "Set channel", [this](istream& strm) {
+		  { "SetChannel", [this](istream& strm) {
 			   return SetChannel(strm);
 		   } },
-		  { "Set previous channel", [this](istream& strm) {
+		  { "SetPreviousChannel", [this](istream& strm) {
 			   return SetPreviousChannel();
 		   } }
 	  })
@@ -63,20 +63,77 @@ bool CRemoteControl::Info() const
 
 bool CRemoteControl::SwitchOn()
 {
+	if (!m_tv.SwitchOn())
+	{
+		m_output << " TV is already switched on\n";
+	}
+	else
+	{
+		Info();
+	}
 	return true;
 }
 
 bool CRemoteControl::SwitchOff()
 {
+	if (!m_tv.SwitchOff())
+	{
+		m_output << " TV is already switched off\n";
+	}
+	else
+	{
+		Info();
+	}
 	return true;
 }
 
-bool CRemoteControl::SetChannel(istream& args)
+bool GetNumberFromStr(string inputStr, int& inputNum)
 {
+	try
+	{
+		inputNum = stoi(inputStr);
+	}
+	catch (exception& exception)
+	{
+		cout << "incorrect argument\n";
+		cerr << exception.what() << "\n";
+		return false;
+	}
+
+	return true;
+}
+
+
+bool CRemoteControl::SetChannel(istream& args)
+{	
+	int channel = -1;
+	string inputStr;
+	args >> inputStr;
+
+	if (GetNumberFromStr(inputStr, channel))
+	{
+		if (m_tv.SetChannel(channel))
+		{
+			m_output << "Channel " << m_tv.GetChannel() << " is seted\n";
+		}
+		else
+		{
+			m_output << "Channel selection mistace\n";
+		}
+	}
+
 	return true;
 }
 
 bool CRemoteControl::SetPreviousChannel()
 {
+	if (m_tv.SetPreviousChannel())
+	{
+		m_output << "Channel " << m_tv.GetChannel() << " is seted\n";
+	}
+	else
+	{
+		m_output << "cant set previous channel\n";
+	}
 	return true;
 }

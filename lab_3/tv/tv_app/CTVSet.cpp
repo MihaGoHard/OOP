@@ -12,7 +12,6 @@ bool CTVSet::SwitchOn()
 	if (m_tvIsOn)
 	{
 		return false;
-		cout << "TV is already on \n";
 	}
 	m_tvIsOn = true;
 	return true;
@@ -33,12 +32,10 @@ bool CTVSet::SetChannel(int channel)
 {
 	if (!m_tvIsOn)
 	{
-		cout << "TV is off\n";
 		return false;
 	}
 	if ((channel < channelLimits.first) || (channel > channelLimits.second) || (channel == m_currentChannel))
 	{
-		cout << "Ñhannel selection error\n";
 		return false;
 	}
 	m_previousChannel = m_currentChannel;
