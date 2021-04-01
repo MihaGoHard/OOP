@@ -59,6 +59,8 @@ TEST_CASE("CTVSet")
 		CHECK(tv.SetChannel(2) == true);
 		CHECK(tv.SetPreviousChannel() == true);
 		CHECK(tv.GetChannel() == 1);
+		CHECK(tv.SetPreviousChannel() == false);
+		CHECK(tv.GetChannel() == 1);
 		CHECK(tv.SetChannel(10) == true);
 		CHECK(tv.SetChannel(15) == true);
 		CHECK(tv.SwitchOff() == true);

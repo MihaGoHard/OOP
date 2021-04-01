@@ -41,13 +41,18 @@ bool CTVSet::SetChannel(int channel)
 		cout << "Ñhannel selection error\n";
 		return false;
 	}
+	m_previousChannel = m_currentChannel;
 	m_currentChannel = channel;
 	return true;
 }
 
 bool CTVSet::SetPreviousChannel()
 {
-
+	if (m_previousChannel == 0 || m_previousChannel == m_currentChannel || !m_tvIsOn)
+	{
+		return false;
+	}
+	m_currentChannel = m_previousChannel;
 	return true;
 }
 
