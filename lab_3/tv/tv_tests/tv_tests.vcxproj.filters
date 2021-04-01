@@ -21,5 +21,8 @@
     <ClCompile Include="..\tv_app\CTVSet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\tv_app\RemoteControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

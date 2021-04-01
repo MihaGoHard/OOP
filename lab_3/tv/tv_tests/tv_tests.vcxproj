@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\tv_app\CTVSet.cpp" />
+    <ClCompile Include="..\tv_app\RemoteControl.cpp" />
     <ClCompile Include="tv_tests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

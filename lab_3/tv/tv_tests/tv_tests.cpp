@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 #include "../tv_app/CTVSet.h"
+#include "../tv_app/RemoteControl.h"
 #include <iostream>
 
 
@@ -71,5 +72,78 @@ TEST_CASE("CTVSet")
 		CHECK(tv.GetChannel() == 10);
 		CHECK(tv.SetPreviousChannel() == false);
 		CHECK(tv.GetChannel() == 10);
+	}
+}
+
+TEST_CASE("CRemoteControl")
+{
+	SECTION("Print switched off tv info")
+	{
+		CTVSet tv;
+
+		string inStr = "Info\n";
+		string outStr = "TV is switched off\n";
+
+		istringstream input(inStr);
+		ostringstream output;
+
+		CRemoteControl tvControl(tv, input, output);
+
+		tvControl.HandleCommand();
+
+		CHECK(outStr == output.str());
+
+	}
+
+	SECTION("on/off tv")
+	{
+		CTVSet tv;
+
+		string inStr = "Switch on\nSwitch off\n";
+
+		istringstream input(inStr);
+		ostringstream output;
+
+		CRemoteControl tvControl(tv, input, output);
+
+		tvControl.HandleCommand();
+		CHECK(tv.IsSwitchedOn() == true);
+
+		tvControl.HandleCommand();
+		CHECK(tv.IsSwitchedOn() == false);
+
+	}
+
+	SECTION("Set channel ")
+	{
+		CTVSet tv;
+		tv.SwitchOn();
+
+		string inStr = "Set channel 2\n";
+
+		istringstream input(inStr);
+		ostringstream output;
+
+		CRemoteControl tvControl(tv, input, output);
+		tvControl.HandleCommand();
+
+		CHECK(tv.GetChannel() == 2);
+	}
+
+	SECTION("Set previous channel")
+	{
+		CTVSet tv;
+		tv.SwitchOn();
+
+		string inStr = "Set channel 2\nSet channel 3\nSet previous channel\n";
+
+		istringstream input(inStr);
+		ostringstream output;
+
+		CRemoteControl tvControl(tv, input, output);
+		tvControl.HandleCommand();
+		tvControl.HandleCommand();
+
+		CHECK(tv.GetChannel() == 2);
 	}
 }

@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CTVSet.cpp" />
+    <ClCompile Include="RemoteControl.cpp" />
     <ClCompile Include="tv_app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CTVSet.h" />
+    <ClInclude Include="RemoteControl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
