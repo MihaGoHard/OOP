@@ -17,5 +17,5 @@ public:
 
 private:
 	bool m_tvIsOn = false;
-	bool m_currentChannel = 1;
+	int m_currentChannel = 1;
 };

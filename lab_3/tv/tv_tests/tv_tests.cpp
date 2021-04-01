@@ -21,15 +21,32 @@ TEST_CASE("CTVSet")
 		CHECK(tv.SwitchOff() == true);
 	}
 
-	SECTION("Set channel")
+	SECTION("Set channel, channel limits")
 	{
 		CTVSet tv;
+		CHECK(tv.SetChannel(2) == false);
 		CHECK(tv.SwitchOn() == true);
-		CHECK(tv.SetChannel(2) == true);
 		CHECK(tv.SetChannel(0) == false);
 		CHECK(tv.SetChannel(1) == false);
-		CHECK(tv.SetChannel(100) == false);
 		CHECK(tv.SetChannel(2) == true);
+		CHECK(tv.SetChannel(100) == false);
+		CHECK(tv.SetChannel(99) == true);
+		CHECK(tv.GetChannel() == 99);
+		CHECK(tv.SetChannel(200) == false);
+		CHECK(tv.GetChannel() == 99);
+	}
+
+	SECTION("Get channel with on/off TV")
+	{
+		CTVSet tv;
+		CHECK(tv.GetChannel() == 0);
+		CHECK(tv.SwitchOn() == true);
+		CHECK(tv.GetChannel() == 1);
+		CHECK(tv.SetChannel(2) == true);
+		CHECK(tv.GetChannel() == 2);
+		CHECK(tv.SwitchOff() == true);
+		CHECK(tv.GetChannel() == 0);
+		CHECK(tv.SwitchOn() == true);
 		CHECK(tv.GetChannel() == 2);
 	}
 }

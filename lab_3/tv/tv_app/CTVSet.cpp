@@ -31,10 +31,25 @@ bool CTVSet::SwitchOff()
 
 bool CTVSet::SetChannel(int channel) 
 {
+	if (!m_tvIsOn)
+	{
+		cout << "TV is off\n";
+		return false;
+	}
+	if ((channel < channelLimits.first) || (channel > channelLimits.second) || (channel == m_currentChannel))
+	{
+		cout << "Ñhannel selection error\n";
+		return false;
+	}
+	m_currentChannel = channel;
 	return true;
 }
 
 int CTVSet::GetChannel() const
 {
+	if (!m_tvIsOn)
+	{
+		return 0;
+	}
 	return m_currentChannel;
 }
