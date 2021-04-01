@@ -45,6 +45,12 @@ bool CTVSet::SetChannel(int channel)
 	return true;
 }
 
+bool CTVSet::SetPreviousChannel()
+{
+
+	return true;
+}
+
 int CTVSet::GetChannel() const
 {
 	if (!m_tvIsOn)

@@ -49,4 +49,25 @@ TEST_CASE("CTVSet")
 		CHECK(tv.SwitchOn() == true);
 		CHECK(tv.GetChannel() == 2);
 	}
+
+	SECTION("Select previous channel")
+	{
+		CTVSet tv;
+		CHECK(tv.SetPreviousChannel() == false);
+		CHECK(tv.SwitchOn() == true);
+		CHECK(tv.SetPreviousChannel() == false);
+		CHECK(tv.SetChannel(2) == true);
+		CHECK(tv.SetPreviousChannel() == true);
+		CHECK(tv.GetChannel() == 1);
+		CHECK(tv.SetChannel(10) == true);
+		CHECK(tv.SetChannel(15) == true);
+		CHECK(tv.SwitchOff() == true);
+		CHECK(tv.SetPreviousChannel() == false);
+		CHECK(tv.SwitchOn() == true);
+		CHECK(tv.GetChannel() == 15);
+		CHECK(tv.SetPreviousChannel() == true);
+		CHECK(tv.GetChannel() == 10);
+		CHECK(tv.SetPreviousChannel() == false);
+		CHECK(tv.GetChannel() == 10);
+	}
 }
