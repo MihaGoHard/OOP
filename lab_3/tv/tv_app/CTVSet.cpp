@@ -61,3 +61,18 @@ int CTVSet::GetChannel() const
 	}
 	return m_currentChannel;
 }
+
+bool CTVSet::SetChannelName(int channel, string name)
+{
+	if (channel < channelLimits.first || channel > channelLimits.second)
+	{
+		return false;
+	}
+	return true;
+}
+
+string CTVSet::GetChannelName(int channel)
+{
+
+	return "";
+}

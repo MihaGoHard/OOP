@@ -73,6 +73,22 @@ TEST_CASE("CTVSet")
 		CHECK(tv.SetPreviousChannel() == false);
 		CHECK(tv.GetChannel() == 10);
 	}
+
+	SECTION("Set channel name")
+	{
+		CTVSet tv;
+		tv.SwitchOn();
+		CHECK(tv.SetChannelName(0, "first") == false);
+		CHECK(tv.SetChannelName(1, "") == false);
+		CHECK(tv.SetChannelName(100, "") == false);
+		CHECK(tv.SetChannelName(1, "             ") == false);
+
+		CHECK(tv.SetChannelName(1, "first") == true);
+		CHECK(tv.GetChannelName(1) == "first");
+
+		CHECK(tv.SetChannelName(2, "    second     channel     ") == true);
+		CHECK(tv.GetChannelName(2) == "second channel");
+	}
 }
 
 TEST_CASE("CRemoteControl")
