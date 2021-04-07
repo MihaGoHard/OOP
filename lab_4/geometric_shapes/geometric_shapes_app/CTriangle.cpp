@@ -92,6 +92,6 @@ string CTriangle::ToString() const
 		 << "border color: " << hex << outlineColor << "\n"
 		 << "fill color: " << hex << fillColor << "\n";
 
-	string lineInfo = strm.str();
-	return lineInfo;
+	string triangleInfo = strm.str();
+	return triangleInfo;
 }

@@ -24,5 +24,8 @@
     <ClCompile Include="..\geometric_shapes_app\CTriangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\geometric_shapes_app\CRectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

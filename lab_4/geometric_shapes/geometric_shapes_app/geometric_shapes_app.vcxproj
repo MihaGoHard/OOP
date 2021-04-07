@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CLineSegment.cpp" />
+    <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="geometric_shapes_app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLineSegment.h" />
+    <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CTriangle.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ISolidShape.h" />
