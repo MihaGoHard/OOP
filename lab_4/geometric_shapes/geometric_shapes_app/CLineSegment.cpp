@@ -1,36 +1,50 @@
 #include "CLineSegment.h"
+using namespace std;
 
-
-CLineSegment::CLineSegment(SPoint const& startPoint, SPoint const& endPoint, uint32_t const& outlineColor)
+CLineSegment::CLineSegment(CPoint const& startPoint, CPoint const& endPoint, uint32_t const& outlineColor)
 	: m_startPoint(startPoint)
 	, m_endPoint(endPoint)
 	, m_outlineColor(outlineColor)
 {
 }
 
-SPoint CLineSegment::GetStartPoint() const
+CPoint CLineSegment::GetStartPoint() const
 {
-	return { 0, 0 };
+	return m_startPoint;
 }
 
-SPoint CLineSegment::GetEndPoint() const
+CPoint CLineSegment::GetEndPoint() const
 {
-	return { 0, 0 };
+	return m_endPoint;
 }
 
 uint32_t CLineSegment::GetOutlineColor() const
 {
-	return 0;
+	return m_outlineColor;
 }
 
 double CLineSegment::GetPerimeter() const
 {
-	return 0.0;
+	double perimeter = hypot(m_endPoint.x - m_startPoint.x, m_endPoint.y - m_startPoint.y);
+	return perimeter;
 }
 
 string CLineSegment::ToString() const
 {
-	return "";
+	auto perimeter = GetPerimeter();
+	auto outlineColor = GetOutlineColor();
+	string startPoint = to_string(m_startPoint.x);
+
+	ostringstream strm;
+	strm << fixed << setprecision(2) 
+		 << "Line:\n"
+		 << "startPoint(" << m_startPoint.x << ", " << m_startPoint.y << ")\n"
+		 << "endPoint(" << m_endPoint.x << ", " << m_endPoint.y << ")\n"
+		 << "perimeter: " << perimeter << "\n" 
+		 << "border color: " << hex << outlineColor << "\n";
+
+	string lineInfo = strm.str();
+	return lineInfo;
 }
 
 double CLineSegment::GetArea() const

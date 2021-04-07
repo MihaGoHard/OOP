@@ -21,12 +21,21 @@
     <ClCompile Include="CLineSegment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CLineSegment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISolidShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CTriangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

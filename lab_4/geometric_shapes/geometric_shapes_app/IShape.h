@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
+#include <cmath>
 using namespace std;
 
-struct SPoint 
+class CPoint 
 {
 public:
 	double x;
@@ -19,6 +20,4 @@ public:
 	virtual uint32_t GetOutlineColor() const = 0;
 
 	virtual ~IShape(){}
-
-private:
 };
