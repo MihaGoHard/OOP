@@ -4,60 +4,91 @@ CTriangle::CTriangle(CPoint const& vertex1, CPoint const& vertex2,
 	CPoint const& vertex3, uint32_t const& outlineColor,
 	uint32_t const& fillColor)
 	: m_vertex1(vertex1)
-	, m_vertex2(m_vertex2)
-	, m_vertex3(m_vertex3)
+	, m_vertex2(vertex2)
+	, m_vertex3(vertex3)
 	, m_outlineColor(outlineColor)
 	, m_fillColor(fillColor)
 {
 }
 
+
 CPoint CTriangle::GetVertex1() const
 {
-	return { 0, 0 };
+	return m_vertex1;
 }
 
 CPoint CTriangle::GetVertex2() const
 {
-	return { 0, 0 };
+	return m_vertex2;
 }
 
 CPoint CTriangle::GetVertex3() const
 {
-	return { 0, 0 };
+	return m_vertex3;
 }
 
-double CTriangle::GetArea() const
+void CTriangle::GetSides(double &side1, double &side2, double &side3) const
 {
-	return 0;
+	side1 = hypot(m_vertex1.x - m_vertex2.x, m_vertex1.y - m_vertex2.y);
+	side2 = hypot(m_vertex2.x - m_vertex3.x, m_vertex2.y - m_vertex2.y);
+	side3 = hypot(m_vertex3.x - m_vertex1.x, m_vertex3.y - m_vertex1.y);
 }
 
 double CTriangle::GetPerimeter() const
 {
-	return 0;
+	double side1;
+	double side2;
+	double side3;
+	GetSides(side1, side2, side3);
+	double perimeter = side1 + side2 + side3;
+	return perimeter;
 }
+
+double CTriangle::GetArea() const
+{
+	double side1;
+	double side2;
+	double side3;
+	GetSides(side1, side2, side3);
+	double perimeter = GetPerimeter();
+	double area = sqrt(perimeter * (perimeter - side1) * (perimeter - side2) * (perimeter - side3));
+	return area;
+}
+
 
 uint32_t CTriangle::GetOutlineColor() const
 {
-	return 0x000000;
+	return m_outlineColor;
 }
 
 uint32_t CTriangle::GetFillColor() const
 {
-	return 0x000000;
+	return m_fillColor;
 }
 
 string CTriangle::ToString() const
 {
-	double perimeter = 0;
-	uint32_t outlineColor = 0x000000;
-	uint32_t fillColor = 0x000000;
+	double perimeter = GetPerimeter();
+	double area = GetArea();
+	uint32_t outlineColor = GetOutlineColor();
+	uint32_t fillColor = GetFillColor();
+
 	ostringstream strm;
+	strm << fixed << setprecision(2) << perimeter;
+	string strPerimeter = strm.str();
+	strm.str("");
+
+	ostringstream strm2;
+	strm2 << fixed << setprecision(2) << area;
+	string strArea = strm2.str();
+
 	strm << fixed << setprecision(2)
-		 << "Line:\n"
+		 << "Triangle:\n"
 		 << "vertex1(" << m_vertex1.x << ", " << m_vertex1.y << ")\n"
 		 << "vertex2(" << m_vertex2.x << ", " << m_vertex2.y << ")\n"
 		 << "vertex3(" << m_vertex3.x << ", " << m_vertex3.y << ")\n"
-		 << "perimeter: " << perimeter << "\n"
+		 << "perimeter: " << strPerimeter << "\n"
+		 << "area: " << strArea << "\n"
 		 << "border color: " << hex << outlineColor << "\n"
 		 << "fill color: " << hex << fillColor << "\n";
 

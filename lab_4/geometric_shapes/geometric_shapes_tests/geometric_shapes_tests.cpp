@@ -72,16 +72,21 @@ TEST_CASE("CTriangle")
 	ostringstream strm;
 	strm << fixed << setprecision(2) << perimeter;
 	string strPerimeter = strm.str();
-	strm.clear();
+	strm.str("");
 
 	double area = sqrt(perimeter * (perimeter - side1) * (perimeter - side2) * (perimeter - side3)); 
 	strm << fixed << setprecision(2) << area;
 	string strArea = strm.str();
 
 	string outString = "Triangle:\nvertex1(2.00, 3.00)\nvertex2(6.00, 3.00)\nvertex3(3.00, 8.00)\nperimeter: " + strPerimeter + 
-					    "\narea: " + strArea + "\nborder color: ff0000\nfill color: ff00ff";
+					    "\narea: " + strArea + "\nborder color: ff00ff\nfill color: ff0000\n";
 
 	CTriangle triangle(vertex1, vertex2, vertex3, outlineColor, fillColor);
+
+	/*SECTION("check triangle.GetSides()")
+	{
+		CHECK(triangle.GetVertex1().x == vertex1.x);
+	}*/
 
 	SECTION("check triangle.GetVertexe1()")
 	{
