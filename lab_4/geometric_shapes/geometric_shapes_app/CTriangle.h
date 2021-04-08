@@ -1,7 +1,6 @@
 #pragma once
-#include <sstream>
-#include <iomanip>
 #include <math.h>
+
 #include "CSolidShape.h"
 
 class CTriangle

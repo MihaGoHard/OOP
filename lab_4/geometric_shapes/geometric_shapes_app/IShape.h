@@ -19,5 +19,5 @@ public:
 
 	virtual uint32_t GetOutlineColor() const = 0;
 
-	virtual ~IShape(){}
+	virtual ~IShape(){};
 };

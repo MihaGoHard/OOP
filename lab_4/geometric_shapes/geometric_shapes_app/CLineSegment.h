@@ -1,5 +1,5 @@
 #pragma once
-#include "IShape.h"
+#include "CShape.h"
 #include <iostream>
 #include <sstream>
 #include <iomanip> 
@@ -7,7 +7,7 @@
 using namespace std;
 
 class CLineSegment
-	: public IShape
+	: public CShape
 {
 public:
 	CLineSegment(CPoint const& startPoint, CPoint const& endPoint, uint32_t const& outlineColor);
@@ -15,7 +15,6 @@ public:
 	double GetArea() const override;
 	double GetPerimeter() const override;
 	string ToString() const override;
-	uint32_t GetOutlineColor() const override;
 
 	CPoint GetStartPoint() const;
 	CPoint GetEndPoint() const;
@@ -23,5 +22,4 @@ public:
 private:
 	CPoint m_startPoint;
 	CPoint m_endPoint;
-	uint32_t m_outlineColor;
 };

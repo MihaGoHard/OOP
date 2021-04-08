@@ -4,7 +4,7 @@ using namespace std;
 CLineSegment::CLineSegment(CPoint const& startPoint, CPoint const& endPoint, uint32_t const& outlineColor)
 	: m_startPoint(startPoint)
 	, m_endPoint(endPoint)
-	, m_outlineColor(outlineColor)
+	, CShape(outlineColor)
 {
 }
 
@@ -16,11 +16,6 @@ CPoint CLineSegment::GetStartPoint() const
 CPoint CLineSegment::GetEndPoint() const
 {
 	return m_endPoint;
-}
-
-uint32_t CLineSegment::GetOutlineColor() const
-{
-	return m_outlineColor;
 }
 
 double CLineSegment::GetPerimeter() const

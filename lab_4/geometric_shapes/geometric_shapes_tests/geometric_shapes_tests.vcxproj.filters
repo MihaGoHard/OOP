@@ -30,5 +30,8 @@
     <ClCompile Include="..\geometric_shapes_app\CSolidShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\geometric_shapes_app\CShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

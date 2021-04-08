@@ -3,12 +3,17 @@
 #include <catch2/catch.hpp>
 #include <sstream>
 
+#include "../geometric_shapes_app/CShape.h"
 #include "../geometric_shapes_app/CSolidShape.h"
 #include "../geometric_shapes_app/CLineSegment.h"
 #include "../geometric_shapes_app/CTriangle.h"
 #include "../geometric_shapes_app/CRectangle.h"
 
 using namespace std;
+
+uint32_t fillColor = 0xFF0000;
+uint32_t outlineColor = 0xFF00FF;
+
 
 TEST_CASE("CLineSegment")
 {
@@ -18,10 +23,8 @@ TEST_CASE("CLineSegment")
 	ostringstream strm;
 	strm << fixed << setprecision(2) << perimeter;
 	string strPerimeter = strm.str();
-	uint32_t outlineColor = 0xE9967A;
-	string strOutlineColor = "e9967a";
 
-	string outString = "Line:\nstartPoint(6.00, 2.00)\nendPoint(3.00, 5.00)\nperimeter: " + strPerimeter + "\nborder color: " + strOutlineColor + "\n";
+	string outString = "Line:\nstartPoint(6.00, 2.00)\nendPoint(3.00, 5.00)\nperimeter: " + strPerimeter + "\nborder color: ff00ff\n";
 
 	CLineSegment line(startPoint, endPoint, outlineColor);
 
@@ -63,9 +66,6 @@ TEST_CASE("CTriangle")
 	CPoint vertex1{ 2, 3 };
 	CPoint vertex2{ 6, 3 };
 	CPoint vertex3{ 3, 8 };
-
-	uint32_t fillColor = 0xFF0000;
-	uint32_t outlineColor = 0xFF00FF;
 
 	double side1 = hypot(vertex1.x - vertex2.x, vertex1.y - vertex2.y);
 	double side2 = hypot(vertex2.x - vertex3.x, vertex2.y - vertex2.y);
@@ -133,8 +133,6 @@ TEST_CASE("CTriangle")
 
 TEST_CASE("CRectangle")
 {
-	uint32_t fillColor = 0xFF0000;
-	uint32_t outlineColor = 0xFF00FF;
 	double width = 10.5;
 	double height = 5.5;
 	CPoint leftTop{ 2, 3 };
@@ -150,7 +148,7 @@ TEST_CASE("CRectangle")
 	strm << fixed << setprecision(2) << area;
 	string strArea = strm.str();
 
-	string outString = "Rectangle:\nleftTop(2.00, 3.00)\nrightBottom(12.5, 8.5)\nwidth: 10.5\nheight: 5.5" + 
+	string outString = "Rectangle:\nleftTop(2.00, 3.00)\nrightBottom(12.50, 8.50)\nwidth: 10.50\nheight: 5.50\nperimeter: " + 
 		strPerimeter + "\narea: " + strArea + 
 		"\nborder color: ff00ff\nfill color: ff0000\n";
 
