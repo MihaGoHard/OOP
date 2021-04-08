@@ -76,11 +76,12 @@ TEST_CASE("CTriangle")
 	ostringstream strm;
 	strm << fixed << setprecision(2) << perimeter;
 	string strPerimeter = strm.str();
-	strm.str("");
 
 	double area = sqrt(perimeter * (perimeter - side1) * (perimeter - side2) * (perimeter - side3));
-	strm << fixed << setprecision(2) << area;
-	string strArea = strm.str();
+	
+	ostringstream strm2;
+	strm2 << fixed << setprecision(2) << area;
+	string strArea = strm2.str();
 
 	string outString = "Triangle:\nvertex1(2.00, 3.00)\nvertex2(6.00, 3.00)\nvertex3(3.00, 8.00)\nperimeter: " + 
 		strPerimeter + "\narea: " + 
@@ -144,10 +145,10 @@ TEST_CASE("CRectangle")
 	ostringstream strm;
 	strm << fixed << setprecision(2) << perimeter;
 	string strPerimeter = strm.str();
-	strm.str("");
 
-	strm << fixed << setprecision(2) << area;
-	string strArea = strm.str();
+	ostringstream strm2;
+	strm2 << fixed << setprecision(2) << area;
+	string strArea = strm2.str();
 
 	string outString = "Rectangle:\nleftTop(2.00, 3.00)\nrightBottom(12.50, 8.50)\nwidth: 10.50\nheight: 5.50\nperimeter: " + 
 		strPerimeter + "\narea: " + strArea + 
@@ -212,15 +213,14 @@ TEST_CASE("CCircle")
 
 	double perimeter = 2 * PI * radius;
 	double area = pow(PI * radius, 2);
-	cout << area;
 
 	ostringstream strm;
 	strm << fixed << setprecision(2) << perimeter;
 	string strPerimeter = strm.str();
-	strm.str("");
 
-	strm << fixed << setprecision(2) << area;
-	string strArea = strm.str();
+	ostringstream strm2;
+	strm2 << fixed << setprecision(2) << area;
+	string strArea = strm2.str();
 
 	string outString = "Circle:\ncenter(15.00, 15.00)\nradius: 10.00\nperimeter: " + strPerimeter + "\narea: " + strArea + "\nborder color: ff00ff\nfill color: ff0000\n";
 
@@ -259,6 +259,6 @@ TEST_CASE("CCircle")
 
 	SECTION("check circle.ToString()")
 	{
-		CHECK(circle.GetArea() == area);
+		CHECK(circle.ToString() == outString);
 	}
 }

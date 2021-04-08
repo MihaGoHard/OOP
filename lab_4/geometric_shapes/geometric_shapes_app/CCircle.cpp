@@ -14,25 +14,54 @@ CCircle::CCircle(CPoint const& center,
 
 CPoint CCircle::GetCenter() const
 {
-	return { 0, 0 };
+	return m_center;
 }
 
 double CCircle::GetRadius() const
 {
-	return 0 ;
-}
-
-double CCircle::GetArea() const
-{
-	return 0;
+	return m_radius;
 }
 
 double CCircle::GetPerimeter() const
 {
-	return 0;
+	const double PI = 3.14;
+	double perimeter = 2 * PI * m_radius;
+	return perimeter;
+}
+
+double CCircle::GetArea() const
+{
+	const double PI = 3.14;
+	double area = pow(PI * m_radius, 2);
+	return area;
 }
 
 string CCircle::ToString() const
 {
-	return "";
+	double perimeter = GetPerimeter();
+	double area = GetArea();
+	
+	uint32_t outlineColor = GetOutlineColor();
+	uint32_t fillColor = GetFillColor();
+
+	ostringstream strm;
+	strm << fixed << setprecision(2) << perimeter;
+	string strPerimeter = strm.str();
+	strm.str("");
+
+	ostringstream strm2;
+	strm2 << fixed << setprecision(2) << area;
+	string strArea = strm2.str();
+
+	strm << fixed << setprecision(2)
+		 << "Circle:\n"
+		 << "center(" << m_center.x << ", " << m_center.y << ")\n"
+		 << "radius: " << m_radius << "\n"
+		 << "perimeter: " << strPerimeter << "\n"
+		 << "area: " << strArea << "\n"
+		 << "border color: " << hex << outlineColor << "\n"
+		 << "fill color: " << hex << fillColor << "\n";
+
+	string circleInfo = strm.str();
+	return circleInfo;
 }
