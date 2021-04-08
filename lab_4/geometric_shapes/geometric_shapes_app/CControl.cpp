@@ -8,16 +8,6 @@ CControl::CControl(istream& input, ostream& output)
 	, m_output(output)
 	, m_actionMap({
 		  { "line", [this](istream& strm) {
-			   pair<CPoint, CPoint> points;
-			   string outlineColor;
-			   string str;
-			   std::stringstream stringCounter(str);
-
-			   while (!stringCounter.eof())
-			   {
-				   ;
-			   }
-
 			   CPoint startPoint;
 			   CPoint endPoint;
 			   uint32_t outlineColor;
@@ -28,7 +18,6 @@ CControl::CControl(istream& input, ostream& output)
 			   strm >> endPoint.y;
 			   strm >> outlineColor;
  
-
 			   CLineSegment line(startPoint, endPoint, outlineColor);	
 			   return AddShape(line);
 		   } },
