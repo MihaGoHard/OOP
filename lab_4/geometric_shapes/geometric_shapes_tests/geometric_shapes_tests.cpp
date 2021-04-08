@@ -8,6 +8,7 @@
 #include "../geometric_shapes_app/CLineSegment.h"
 #include "../geometric_shapes_app/CTriangle.h"
 #include "../geometric_shapes_app/CRectangle.h"
+#include "../geometric_shapes_app/CCircle.h"
 
 using namespace std;
 
@@ -199,5 +200,65 @@ TEST_CASE("CRectangle")
 	SECTION("check triangle.ToString()")
 	{
 		CHECK(rectangle.ToString() == outString);
+	}
+}
+
+
+TEST_CASE("CCircle")
+{
+	CPoint center = { 15, 15 };
+	double radius = 10;
+	const double PI = 3.14;
+
+	double perimeter = 2 * PI * radius;
+	double area = pow(PI * radius, 2);
+	cout << area;
+
+	ostringstream strm;
+	strm << fixed << setprecision(2) << perimeter;
+	string strPerimeter = strm.str();
+	strm.str("");
+
+	strm << fixed << setprecision(2) << area;
+	string strArea = strm.str();
+
+	string outString = "Circle:\ncenter(15.00, 15.00)\nradius: 10.00\nperimeter: " + strPerimeter + "\narea: " + strArea + "\nborder color: ff00ff\nfill color: ff0000\n";
+
+	CCircle circle(center, radius, outlineColor, fillColor);
+	
+	SECTION("check circle.GetCenter()")
+	{
+		CHECK(circle.GetCenter().x == center.x);
+		CHECK(circle.GetCenter().y == center.y);
+	}
+
+	SECTION("check circle.GetRadius()")
+	{
+		CHECK(circle.GetRadius() == radius);
+	}
+
+	SECTION("check circle.GetPerimeter()")
+	{
+		CHECK(circle.GetPerimeter() == perimeter);
+	}
+
+	SECTION("check circle.GetArea()")
+	{
+		CHECK(circle.GetArea() == area);
+	}
+
+	SECTION("check circle.GetFillColor()")
+	{
+		CHECK(circle.GetFillColor() == fillColor);
+	}
+
+	SECTION("check circle.GetOutlineColor()")
+	{
+		CHECK(circle.GetOutlineColor() == outlineColor);
+	}
+
+	SECTION("check circle.ToString()")
+	{
+		CHECK(circle.GetArea() == area);
 	}
 }

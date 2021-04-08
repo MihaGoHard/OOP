@@ -1,4 +1,5 @@
 #include "CTriangle.h"
+using namespace std;
 
 CTriangle::CTriangle(CPoint const& vertex1, CPoint const& vertex2,
 	CPoint const& vertex3, uint32_t const& outlineColor, uint32_t const& fillColor)

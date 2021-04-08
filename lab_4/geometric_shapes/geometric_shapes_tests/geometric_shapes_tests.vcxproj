@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\geometric_shapes_app\CCircle.cpp" />
     <ClCompile Include="..\geometric_shapes_app\CLineSegment.cpp" />
     <ClCompile Include="..\geometric_shapes_app\CRectangle.cpp" />
     <ClCompile Include="..\geometric_shapes_app\CShape.cpp" />
