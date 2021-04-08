@@ -3,6 +3,7 @@
 #include <catch2/catch.hpp>
 #include <sstream>
 
+#include "../geometric_shapes_app/CSolidShape.h"
 #include "../geometric_shapes_app/CLineSegment.h"
 #include "../geometric_shapes_app/CTriangle.h"
 #include "../geometric_shapes_app/CRectangle.h"
@@ -152,6 +153,7 @@ TEST_CASE("CRectangle")
 	string outString = "Rectangle:\nleftTop(2.00, 3.00)\nrightBottom(12.5, 8.5)\nwidth: 10.5\nheight: 5.5" + 
 		strPerimeter + "\narea: " + strArea + 
 		"\nborder color: ff00ff\nfill color: ff0000\n";
+
 	CRectangle rectangle(leftTop, width, height, outlineColor, fillColor);
 
 	SECTION("check rectangle.GetLeftTop")
