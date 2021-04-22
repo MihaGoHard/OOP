@@ -39,6 +39,15 @@
     <ClCompile Include="CControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CControlValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CControlAddingShapes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CControlPrint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IShape.h">

@@ -11,6 +11,8 @@ public:
 	CSolidShape(uint32_t const& outlineColor, uint32_t const& fillColor);
 	uint32_t GetFillColor() const final;
 
+	uint32_t GetOutlineColor() const override;
+
 	virtual ~CSolidShape(){};
 
 private:

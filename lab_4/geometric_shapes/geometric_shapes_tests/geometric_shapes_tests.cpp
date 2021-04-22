@@ -25,7 +25,7 @@ TEST_CASE("CLineSegment")
 	strm << fixed << setprecision(2) << perimeter;
 	string strPerimeter = strm.str();
 
-	string outString = "Line:\nstartPoint(6.00, 2.00)\nendPoint(3.00, 5.00)\nperimeter: " + strPerimeter + "\nborder color: ff00ff\n";
+	string outString = ">Line:\n  startPoint(6.00, 2.00)\n  endPoint(3.00, 5.00)\n  perimeter: " + strPerimeter + "\n  area: 0.00\n  border color: ff00ff\n";
 
 	CLineSegment line(startPoint, endPoint, outlineColor);
 
@@ -83,9 +83,9 @@ TEST_CASE("CTriangle")
 	strm2 << fixed << setprecision(2) << area;
 	string strArea = strm2.str();
 
-	string outString = "Triangle:\nvertex1(2.00, 3.00)\nvertex2(6.00, 3.00)\nvertex3(3.00, 8.00)\nperimeter: " + 
-		strPerimeter + "\narea: " + 
-		strArea + "\nborder color: ff00ff\nfill color: ff0000\n";
+	string outString = ">Triangle:\n  vertex1(2.00, 3.00)\n  vertex2(6.00, 3.00)\n  vertex3(3.00, 8.00)\n  perimeter: " + 
+		strPerimeter + "\n  area: " + 
+		strArea + "\n  border color: ff00ff\n  fill color: ff0000\n";
 
 	CTriangle triangle(vertex1, vertex2, vertex3, outlineColor, fillColor);
 
@@ -150,9 +150,9 @@ TEST_CASE("CRectangle")
 	strm2 << fixed << setprecision(2) << area;
 	string strArea = strm2.str();
 
-	string outString = "Rectangle:\nleftTop(2.00, 3.00)\nrightBottom(12.50, 8.50)\nwidth: 10.50\nheight: 5.50\nperimeter: " + 
-		strPerimeter + "\narea: " + strArea + 
-		"\nborder color: ff00ff\nfill color: ff0000\n";
+	string outString = ">Rectangle:\n  leftTop(2.00, 3.00)\n  rightBottom(12.50, 8.50)\n  width: 10.50\n  height: 5.50\n  perimeter: " + 
+		strPerimeter + "\n  area: " + strArea + 
+		"\n  border color: ff00ff\n  fill color: ff0000\n";
 
 	CRectangle rectangle(leftTop, width, height, outlineColor, fillColor);
 
@@ -222,7 +222,7 @@ TEST_CASE("CCircle")
 	strm2 << fixed << setprecision(2) << area;
 	string strArea = strm2.str();
 
-	string outString = "Circle:\ncenter(15.00, 15.00)\nradius: 10.00\nperimeter: " + strPerimeter + "\narea: " + strArea + "\nborder color: ff00ff\nfill color: ff0000\n";
+	string outString = ">Circle:\n  center(15.00, 15.00)\n  radius: 10.00\n  perimeter: " + strPerimeter + "\n  area: " + strArea + "\n  border color: ff00ff\n  fill color: ff0000\n";
 
 	CCircle circle(center, radius, outlineColor, fillColor);
 	

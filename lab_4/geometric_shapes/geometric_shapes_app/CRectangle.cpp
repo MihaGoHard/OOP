@@ -64,21 +64,19 @@ string CRectangle::ToString() const
 	string strArea = strm2.str();
 
 	strm << fixed << setprecision(2)
-		 << "Rectangle:\n"
-		 << "leftTop(" << m_leftTop.x << ", " << m_leftTop.y << ")\n"
-		 << "rightBottom(" << rightBottom.x << ", " << rightBottom.y << ")\n"
-		 << "width: " << m_width << "\n"
-		 << "height: " << m_height << "\n"
-		 << "perimeter: " << strPerimeter << "\n"
-		 << "area: " << strArea << "\n"
-		 << "border color: " << hex << outlineColor << "\n"
-		 << "fill color: " << hex << fillColor << "\n";
+		 << ">Rectangle:\n"
+		 << "  leftTop(" << m_leftTop.x << ", " << m_leftTop.y << ")\n"
+		 << "  rightBottom(" << rightBottom.x << ", " << rightBottom.y << ")\n"
+		 << "  width: " << m_width << "\n"
+		 << "  height: " << m_height << "\n"
+		 << "  perimeter: " << strPerimeter << "\n"
+		 << "  area: " << strArea << "\n"
+		 << "  border color: " << hex << outlineColor << "\n"
+		 << "  fill color: " << setfill('0') << setw(6) << hex << fillColor << "\n";
 
 	string rectangleInfo = strm.str();
 	return rectangleInfo;
 }
-
-
 
 
 

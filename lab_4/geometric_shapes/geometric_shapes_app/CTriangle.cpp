@@ -9,7 +9,7 @@ CTriangle::CTriangle(CPoint const& vertex1, CPoint const& vertex2,
 	, CSolidShape(outlineColor, fillColor)
 {
 }
-
+//clang pwer tools  модульное произв-ие скал€рное
 
 CPoint CTriangle::GetVertex1() const
 {
@@ -72,14 +72,14 @@ string CTriangle::ToString() const
 	string strArea = strm2.str();
 
 	strm << fixed << setprecision(2)
-		 << "Triangle:\n"
-		 << "vertex1(" << m_vertex1.x << ", " << m_vertex1.y << ")\n"
-		 << "vertex2(" << m_vertex2.x << ", " << m_vertex2.y << ")\n"
-		 << "vertex3(" << m_vertex3.x << ", " << m_vertex3.y << ")\n"
-		 << "perimeter: " << strPerimeter << "\n"
-		 << "area: " << strArea << "\n"
-		 << "border color: " << hex << outlineColor << "\n"
-		 << "fill color: " << hex << fillColor << "\n";
+		 << ">Triangle:\n"
+		 << "  vertex1(" << m_vertex1.x << ", " << m_vertex1.y << ")\n"
+		 << "  vertex2(" << m_vertex2.x << ", " << m_vertex2.y << ")\n"
+		 << "  vertex3(" << m_vertex3.x << ", " << m_vertex3.y << ")\n"
+		 << "  perimeter: " << strPerimeter << "\n"
+		 << "  area: " << strArea << "\n"
+		 << "  border color: " << hex << outlineColor << "\n"
+		 << "  fill color: " << setfill('0') << setw(6) << hex << fillColor << "\n";
 
 	string triangleInfo = strm.str();
 	return triangleInfo;

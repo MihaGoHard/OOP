@@ -10,12 +10,10 @@ int main()
 	while (!cin.eof() && !cin.fail())
 	{
 		cout << "> ";
-		if (!control.HandleCommand())
-		{
-			cout << "Unknown shape!\n";
-		}
+		control.HandleCommand();
 	}
-	return 0;
-    
+	control.PrintShapeMinPerimeter();
+	control.PrintShapeMaxArea();
+	return 0;   
 }
 

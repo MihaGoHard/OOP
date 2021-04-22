@@ -9,10 +9,11 @@ class CShape
 {
 public:
 	CShape(uint32_t const& outlineColor);
-	uint32_t GetOutlineColor() const;
+
+	virtual uint32_t GetOutlineColor() const = 0;
 
 	virtual ~CShape(){};
 
-private:
+protected:
 	uint32_t m_outlineColor;
 };

@@ -54,14 +54,14 @@ string CCircle::ToString() const
 	string strArea = strm2.str();
 
 	strm << fixed << setprecision(2)
-		 << "Circle:\n"
-		 << "center(" << m_center.x << ", " << m_center.y << ")\n"
-		 << "radius: " << m_radius << "\n"
-		 << "perimeter: " << strPerimeter << "\n"
-		 << "area: " << strArea << "\n"
-		 << "border color: " << hex << outlineColor << "\n"
-		 << "fill color: " << hex << fillColor << "\n";
-
+		 << ">Circle:\n"
+		 << "  center(" << m_center.x << ", " << m_center.y << ")\n"
+		 << "  radius: " << m_radius << "\n"
+		 << "  perimeter: " << strPerimeter << "\n"
+		 << "  area: " << strArea << "\n"
+		 << "  border color: " << hex << outlineColor << "\n"
+		 << "  fill color: " << setfill('0') << setw(6) << hex << fillColor << "\n";
+                
 	string circleInfo = strm.str();
 	return circleInfo;
 }

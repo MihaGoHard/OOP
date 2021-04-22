@@ -27,16 +27,17 @@ double CLineSegment::GetPerimeter() const
 string CLineSegment::ToString() const
 {
 	auto perimeter = GetPerimeter();
+	auto area = GetArea();
 	auto outlineColor = GetOutlineColor();
 	string startPoint = to_string(m_startPoint.x);
-
 	ostringstream strm;
 	strm << fixed << setprecision(2) 
-		 << "Line:\n"
-		 << "startPoint(" << m_startPoint.x << ", " << m_startPoint.y << ")\n"
-		 << "endPoint(" << m_endPoint.x << ", " << m_endPoint.y << ")\n"
-		 << "perimeter: " << perimeter << "\n" 
-		 << "border color: " << hex << outlineColor << "\n";
+		 << ">Line:\n"
+		 << "  startPoint(" << m_startPoint.x << ", " << m_startPoint.y << ")\n"
+		 << "  endPoint(" << m_endPoint.x << ", " << m_endPoint.y << ")\n"
+		 << "  perimeter: " << perimeter << "\n"
+		 << "  area: " << area << "\n"
+		 << "  border color: " << setfill('0') << setw(6) << hex << outlineColor << "\n";
 
 	string lineInfo = strm.str();
 	return lineInfo;
@@ -45,4 +46,9 @@ string CLineSegment::ToString() const
 double CLineSegment::GetArea() const
 {
 	return 0.0;
+}
+
+uint32_t CLineSegment::GetOutlineColor() const
+{
+	return m_outlineColor;
 }
