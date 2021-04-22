@@ -2,6 +2,7 @@
 
 #include <catch2/catch.hpp>
 #include <sstream>
+#include <iostream>
 
 #include "../geometric_shapes_app/CShape.h"
 #include "../geometric_shapes_app/CSolidShape.h"
@@ -9,6 +10,7 @@
 #include "../geometric_shapes_app/CTriangle.h"
 #include "../geometric_shapes_app/CRectangle.h"
 #include "../geometric_shapes_app/CCircle.h"
+#include "../geometric_shapes_app/CControl.h"
 
 using namespace std;
 
@@ -262,3 +264,46 @@ TEST_CASE("CCircle")
 		CHECK(circle.ToString() == outString);
 	}
 }
+
+
+TEST_CASE("CControl")
+{
+	SECTION("add line to shape list")
+	{
+		string inStr = "line 10 10 15 20 ff00ee\ninfo\n";
+
+		string outStr = ">Line:\n  startPoint(10.00, 10.00)\n  endPoint(15.00, 20.00)\n  perimeter: 11.18\n  area: 0.00\n  border color: ff00ee\n\n";
+
+		istringstream input(inStr);
+		ostringstream output;
+
+		CControl control(input, output);
+		control.HandleCommand();
+		control.HandleCommand();
+
+		CHECK(outStr == output.str());
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
