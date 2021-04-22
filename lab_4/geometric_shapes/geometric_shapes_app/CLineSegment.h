@@ -15,7 +15,6 @@ public:
 	double GetArea() const override;
 	double GetPerimeter() const override;
 	string ToString() const override;
-	uint32_t GetOutlineColor() const override;
 
 	CPoint GetStartPoint() const;
 	CPoint GetEndPoint() const;

@@ -5,3 +5,7 @@ CShape::CShape(uint32_t const& outlineColor)
 {
 }
 
+uint32_t CShape::GetOutlineColor() const
+{
+	return m_outlineColor;
+}

@@ -13,5 +13,5 @@ uint32_t CSolidShape::GetFillColor() const
 
 uint32_t CSolidShape::GetOutlineColor() const
 {
-	return m_outlineColor;
+	return CShape::GetOutlineColor();
 }

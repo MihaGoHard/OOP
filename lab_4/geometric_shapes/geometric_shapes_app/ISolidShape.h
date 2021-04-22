@@ -6,5 +6,4 @@ class ISolidShape
 {
 public:
 	virtual uint32_t GetFillColor() const = 0;
-	//virtual ~ISolidShape(){};
 };

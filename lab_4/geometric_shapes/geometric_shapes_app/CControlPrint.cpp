@@ -10,8 +10,8 @@ bool CControl::PrintShapeMinPerimeter() const
 		return false;
 	}
 
-	vector<shared_ptr<IShape>>::const_iterator shapeMinPerimeter = min_element(m_shapesList.cbegin(), m_shapesList.cend(),
-		[](const shared_ptr<IShape>& shape1, const shared_ptr<IShape>& shape2) {
+	auto shapeMinPerimeter = min_element(m_shapesList.cbegin(), m_shapesList.cend(),
+		[](const auto& shape1, const auto& shape2) {
 			return shape1->GetPerimeter() < shape2->GetPerimeter();
 		});
 
@@ -29,8 +29,10 @@ bool CControl::PrintShapeMaxArea() const
 		return false;
 	}
 
-	vector<shared_ptr<IShape>>::const_iterator shapeMaxArea = max_element(m_shapesList.cbegin(), m_shapesList.cend(),
-		[](const shared_ptr<IShape>& shape1, const shared_ptr<IShape>& shape2) {
+
+
+	auto shapeMaxArea = max_element(m_shapesList.cbegin(), m_shapesList.cend(),
+		[](const auto& shape1, const auto& shape2) {
 			return shape1->GetArea() < shape2->GetArea();
 		});
 

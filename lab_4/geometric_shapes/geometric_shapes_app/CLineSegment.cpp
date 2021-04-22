@@ -47,8 +47,3 @@ double CLineSegment::GetArea() const
 {
 	return 0.0;
 }
-
-uint32_t CLineSegment::GetOutlineColor() const
-{
-	return m_outlineColor;
-}
