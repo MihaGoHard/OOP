@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "../rational_numbers_app/CRational.h"
-
+using namespace std;
 
 TEST_CASE("CRational constructors")
 {
@@ -32,7 +32,7 @@ TEST_CASE("CRational constructors")
 			CRational rational(2, 3);
 			CHECK(rational.GetNumerator() == 2);
 			CHECK(rational.GetDenominator() == 3);
-			CHECK(rational.ToDouble() == 0.66);
+			CHECK(rational.ToDouble() == Approx(0.6666666667));
 		}
 
 		SECTION("numerator: negative; denominator: positive")
@@ -40,22 +40,30 @@ TEST_CASE("CRational constructors")
 			CRational rational(-4, 6);
 			CHECK(rational.GetNumerator() == -2);
 			CHECK(rational.GetDenominator() == 3);
-			CHECK(rational.ToDouble() == -0.66);
+			CHECK(rational.ToDouble() == Approx(-0.6666666667));
+		}
+
+		SECTION("numerator: positive; denominator: negative")
+		{
+			CRational rational(4, -6);
+			CHECK(rational.GetNumerator() == -2);
+			CHECK(rational.GetDenominator() == 3);
+			CHECK(rational.ToDouble() == Approx(-0.6666666667));
 		}
 
 		SECTION("numerator: negative; denominator: negative")
 		{
 			CRational rational(-4, -6);
-			CHECK(rational.GetNumerator() == -2);
+			CHECK(rational.GetNumerator() == 2);
 			CHECK(rational.GetDenominator() == 3);
-			CHECK(rational.ToDouble() == -0.66);
+			CHECK(rational.ToDouble() == Approx(0.6666666667));
 		}
 
 		SECTION("numerator: positive; denominator: 0")
 		{
 			CRational rational(2, 0);
 			CHECK(rational.GetNumerator() == 0);
-			CHECK(rational.GetDenominator() == 0);
+			CHECK(rational.GetDenominator() == 1);
 			CHECK(rational.ToDouble() == 0);
 		}
 	}

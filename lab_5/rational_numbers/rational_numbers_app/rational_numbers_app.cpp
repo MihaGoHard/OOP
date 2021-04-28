@@ -6,7 +6,6 @@ using namespace std;
 
 int main()
 {
-	CRational rational(8, 18);
+	CRational rational(8, 0);
     cout << rational.GetNumerator() << " " << rational.GetDenominator() << "\n";
-	cout << abs(4.21) << "\n";
 }

@@ -1,5 +1,11 @@
 #pragma once
 
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <math.h>
+#include <numeric>
+
 class CRational
 {
 public:
@@ -17,7 +23,7 @@ public:
 
 private:
 	int m_numerator;
-	int m_denomenator;
-	//bool Normalize();
+	int m_denominator;
+	bool Normalize();
 };
 
