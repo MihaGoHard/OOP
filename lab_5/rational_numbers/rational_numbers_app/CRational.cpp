@@ -91,12 +91,21 @@ CRational const operator-(CRational& leftOperand, CRational& rightOperand)
 
 CRational const operator*(CRational& leftOperand, CRational& rightOperand)
 {
-	return CRational();
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+
+	return CRational(leftNumerator * rightNumerator, leftDenominator * rightDenominator);
 }
 
 CRational const operator/(CRational& leftOperand, CRational& rightOperand)
 {
-	return CRational();
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+	return CRational(leftNumerator * rightDenominator, leftDenominator * rightNumerator);
 }
 
 

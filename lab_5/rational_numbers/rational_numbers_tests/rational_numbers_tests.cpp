@@ -115,7 +115,7 @@ TEST_CASE("Binar operators *|/")
 	{
 		CRational leftOperand(4, 6);
 		CRational rightOperand(-3, 2);
-		auto resultRational = leftOperand - rightOperand;
+		auto resultRational = leftOperand / rightOperand;
 		CHECK(resultRational.GetNumerator() == -4);
 		CHECK(resultRational.GetDenominator() == 9);
 	}
@@ -124,7 +124,7 @@ TEST_CASE("Binar operators *|/")
 	{
 		CRational leftOperand(4, 6);
 		CRational rightOperand(-3, 2);
-		auto resultRational = leftOperand + rightOperand;
+		auto resultRational = leftOperand * rightOperand;
 		CHECK(resultRational.GetNumerator() == -1);
 		CHECK(resultRational.GetDenominator() == 1);
 	}
