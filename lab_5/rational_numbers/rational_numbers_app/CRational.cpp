@@ -88,3 +88,40 @@ CRational const operator-(CRational& leftOperand, CRational& rightOperand)
 	int numerator = (leftNumerator * LCM / leftDenominator) - (rightNumerator * LCM / rightDenominator);
 	return CRational(numerator, LCM);
 }
+
+CRational const operator*(CRational& leftOperand, CRational& rightOperand)
+{
+	return CRational();
+}
+
+CRational const operator/(CRational& leftOperand, CRational& rightOperand)
+{
+	return CRational();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

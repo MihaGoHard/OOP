@@ -88,7 +88,7 @@ TEST_CASE("Unar operators")
 	}
 }
 
-TEST_CASE("Binar operators +/-")
+TEST_CASE("Binar operators +|-")
 {
 	SECTION("-")
 	{
@@ -108,3 +108,49 @@ TEST_CASE("Binar operators +/-")
 		CHECK(resultRational.GetDenominator() == 6);
 	}
 }
+
+TEST_CASE("Binar operators *|/")
+{
+	SECTION("/")
+	{
+		CRational leftOperand(4, 6);
+		CRational rightOperand(-3, 2);
+		auto resultRational = leftOperand - rightOperand;
+		CHECK(resultRational.GetNumerator() == -4);
+		CHECK(resultRational.GetDenominator() == 9);
+	}
+
+	SECTION("*")
+	{
+		CRational leftOperand(4, 6);
+		CRational rightOperand(-3, 2);
+		auto resultRational = leftOperand + rightOperand;
+		CHECK(resultRational.GetNumerator() == -1);
+		CHECK(resultRational.GetDenominator() == 1);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -28,3 +28,6 @@ private:
 
 CRational const operator+(CRational& leftOperand, CRational& rightOperand);
 CRational const operator-(CRational& leftOperand, CRational& rightOperand);
+
+CRational const operator*(CRational& leftOperand, CRational& rightOperand);
+CRational const operator/(CRational& leftOperand, CRational& rightOperand);
