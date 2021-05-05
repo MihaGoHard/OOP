@@ -130,6 +130,30 @@ TEST_CASE("Binar operators *|/")
 	}
 }
 
+TEST_CASE("operators +=|-=")
+{
+	SECTION("+=")
+	{
+		CRational leftOperand(-4, 5);
+		CRational rightOperand(-8, 7);
+		leftOperand += rightOperand;
+		CHECK(leftOperand.GetNumerator() == -88);
+		CHECK(leftOperand.GetDenominator() == 35);
+		CHECK(rightOperand.GetNumerator() == -8);
+		CHECK(rightOperand.GetDenominator() == 7);
+	}
+
+	SECTION("-=")
+	{
+		CRational leftOperand(-4, 5);
+		CRational rightOperand(-8, 7);
+		leftOperand -= rightOperand;
+		CHECK(leftOperand.GetNumerator() == 12);
+		CHECK(leftOperand.GetDenominator() == 35);
+		CHECK(rightOperand.GetNumerator() == -8);
+		CHECK(rightOperand.GetDenominator() == 7);
+	}
+}
 
 
 

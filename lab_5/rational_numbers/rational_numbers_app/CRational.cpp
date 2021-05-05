@@ -108,6 +108,26 @@ CRational const operator/(CRational& leftOperand, CRational& rightOperand)
 	return CRational(leftNumerator * rightDenominator, leftDenominator * rightNumerator);
 }
 
+CRational& CRational::operator+=(const CRational& rightOperand)
+{
+	return *this;
+}
+
+CRational& CRational::operator-=(const CRational& rightOperand)
+{
+	return *this;
+}
+
+CRational& CRational::operator*=(const CRational& rightOperand)
+{
+	return *this;
+}
+
+CRational& CRational::operator/=(const CRational& rightOperand)
+{
+	return *this;
+}
+
 
 
 

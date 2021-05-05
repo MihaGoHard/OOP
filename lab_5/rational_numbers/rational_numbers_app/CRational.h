@@ -20,6 +20,11 @@ public:
 	CRational const operator-() const;
 	CRational const operator+() const;
 
+	CRational& operator+=(const CRational& rightOperand);
+	CRational& operator-=(const CRational& rightOperand);
+	CRational& operator*=(const CRational& rightOperand);
+	CRational& operator/=(const CRational& rightOperand);
+
 private:
 	int m_numerator;
 	int m_denominator;
