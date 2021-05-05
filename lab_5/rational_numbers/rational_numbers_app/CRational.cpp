@@ -1,7 +1,7 @@
 #include "CRational.h"
 using namespace std;
 
-CRational::CRational() 
+CRational::CRational()
 	: m_numerator(0)
 	, m_denominator(1)
 {
@@ -55,7 +55,6 @@ double CRational::ToDouble() const
 	return static_cast<double>(m_numerator) / m_denominator;
 }
 
-
 CRational const CRational::operator-() const
 {
 	return CRational(-m_numerator, m_denominator);
@@ -68,10 +67,24 @@ CRational const CRational::operator+() const
 
 CRational const operator+(CRational& leftOperand, CRational& rightOperand)
 {
-	return CRational();
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+
+	const int LCM = lcm(leftDenominator, rightDenominator);
+	int numerator = (leftNumerator * LCM / leftDenominator) + (rightNumerator * LCM / rightDenominator);
+	return CRational(numerator, LCM);
 }
 
 CRational const operator-(CRational& leftOperand, CRational& rightOperand)
 {
-	return CRational();
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+
+	const int LCM = lcm(leftDenominator, rightDenominator);
+	int numerator = (leftNumerator * LCM / leftDenominator) - (rightNumerator * LCM / rightDenominator);
+	return CRational(numerator, LCM);
 }
