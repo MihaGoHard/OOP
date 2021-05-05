@@ -54,3 +54,24 @@ double CRational::ToDouble() const
 {
 	return static_cast<double>(m_numerator) / m_denominator;
 }
+
+
+CRational const CRational::operator-() const
+{
+	return CRational(-m_numerator, m_denominator);
+}
+
+CRational const CRational::operator+() const
+{
+	return *this;
+}
+
+CRational const operator+(CRational& leftOperand, CRational& rightOperand)
+{
+	return CRational();
+}
+
+CRational const operator-(CRational& leftOperand, CRational& rightOperand)
+{
+	return CRational();
+}

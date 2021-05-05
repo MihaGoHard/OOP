@@ -68,3 +68,43 @@ TEST_CASE("CRational constructors")
 		}
 	}
 }
+
+TEST_CASE("Unar operators")
+{
+	SECTION("-")
+	{
+		CRational rational(4, 6);
+		auto resultRational = -rational;
+		CHECK(resultRational.GetNumerator() == -2);
+		CHECK(resultRational.GetDenominator() == 3);
+	}
+
+	SECTION("+")
+	{
+		CRational rational(4, 6);
+		auto resultRational = +rational;
+		CHECK(resultRational.GetNumerator() == 2);
+		CHECK(resultRational.GetDenominator() == 3);
+	}
+}
+
+TEST_CASE("Binar operators +/-")
+{
+	SECTION("-")
+	{
+		CRational leftOperand(4, 6);
+		CRational rightOperand(-3, 2);
+		auto resultRational = leftOperand - rightOperand;
+		CHECK(resultRational.GetNumerator() == 13);
+		CHECK(resultRational.GetDenominator() == 6);
+	}
+
+	SECTION("+")
+	{
+		CRational leftOperand(4, 6);
+		CRational rightOperand(-3, 2);
+		auto resultRational = leftOperand + rightOperand;
+		CHECK(resultRational.GetNumerator() == -5);
+		CHECK(resultRational.GetDenominator() == 6);
+	}
+}

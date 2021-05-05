@@ -13,13 +13,12 @@ public:
 	CRational();
 	CRational(int value);
 	CRational(int numerator, int denominator);
-
 	int GetNumerator() const;
-
 	int GetDenominator() const;
-
 	double ToDouble() const;
 	
+	CRational const operator-() const;
+	CRational const operator+() const;
 
 private:
 	int m_numerator;
@@ -27,3 +26,5 @@ private:
 	bool Normalize();
 };
 
+CRational const operator+(CRational& leftOperand, CRational& rightOperand);
+CRational const operator-(CRational& leftOperand, CRational& rightOperand);
