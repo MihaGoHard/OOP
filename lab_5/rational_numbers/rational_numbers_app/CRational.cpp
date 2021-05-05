@@ -122,11 +122,15 @@ CRational& CRational::operator-=(const CRational& rightOperand)
 
 CRational& CRational::operator*=(const CRational& rightOperand)
 {
+	*this = *this * rightOperand;
+	Normalize();
 	return *this;
 }
 
 CRational& CRational::operator/=(const CRational& rightOperand)
 {
+	*this = *this / rightOperand;
+	Normalize();
 	return *this;
 }
 
