@@ -134,6 +134,22 @@ CRational& CRational::operator/=(const CRational& rightOperand)
 	return *this;
 }
 
+bool const operator==(const CRational& leftOperand, const CRational& rightOperand)
+{
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+	
+	return leftNumerator == rightNumerator && leftDenominator == rightDenominator;
+}
+
+bool const operator!=(const CRational& leftOperand, const CRational& rightOperand)
+{
+	return !(leftOperand == rightOperand);
+}
+
+
 
 
 

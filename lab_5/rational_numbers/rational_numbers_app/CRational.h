@@ -36,3 +36,6 @@ CRational const operator-(const CRational& leftOperand, const CRational& rightOp
 
 CRational const operator*(const CRational& leftOperand, const CRational& rightOperand);
 CRational const operator/(const CRational& leftOperand, const CRational& rightOperand);
+
+bool const operator==(const CRational& leftOperand, const CRational& rightOperand);
+bool const operator!=(const CRational& leftOperand, const CRational& rightOperand);
