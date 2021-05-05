@@ -65,7 +65,7 @@ CRational const CRational::operator+() const
 	return *this;
 }
 
-CRational const operator+(CRational& leftOperand, CRational& rightOperand)
+CRational const operator+(const CRational& leftOperand, const CRational& rightOperand)
 {
 	int leftNumerator = leftOperand.GetNumerator();
 	int leftDenominator = leftOperand.GetDenominator();
@@ -77,7 +77,7 @@ CRational const operator+(CRational& leftOperand, CRational& rightOperand)
 	return CRational(numerator, LCM);
 }
 
-CRational const operator-(CRational& leftOperand, CRational& rightOperand)
+CRational const operator-(const CRational& leftOperand, const CRational& rightOperand)
 {
 	int leftNumerator = leftOperand.GetNumerator();
 	int leftDenominator = leftOperand.GetDenominator();
@@ -89,7 +89,7 @@ CRational const operator-(CRational& leftOperand, CRational& rightOperand)
 	return CRational(numerator, LCM);
 }
 
-CRational const operator*(CRational& leftOperand, CRational& rightOperand)
+CRational const operator*(const CRational& leftOperand, const CRational& rightOperand)
 {
 	int leftNumerator = leftOperand.GetNumerator();
 	int leftDenominator = leftOperand.GetDenominator();
@@ -99,7 +99,7 @@ CRational const operator*(CRational& leftOperand, CRational& rightOperand)
 	return CRational(leftNumerator * rightNumerator, leftDenominator * rightDenominator);
 }
 
-CRational const operator/(CRational& leftOperand, CRational& rightOperand)
+CRational const operator/(const CRational& leftOperand, const CRational& rightOperand)
 {
 	int leftNumerator = leftOperand.GetNumerator();
 	int leftDenominator = leftOperand.GetDenominator();
@@ -110,11 +110,13 @@ CRational const operator/(CRational& leftOperand, CRational& rightOperand)
 
 CRational& CRational::operator+=(const CRational& rightOperand)
 {
+	*this = *this + rightOperand;
 	return *this;
 }
 
 CRational& CRational::operator-=(const CRational& rightOperand)
 {
+	*this = *this - rightOperand;
 	return *this;
 }
 

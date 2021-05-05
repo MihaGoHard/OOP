@@ -137,7 +137,7 @@ TEST_CASE("operators +=|-=")
 		CRational leftOperand(-4, 5);
 		CRational rightOperand(-8, 7);
 		leftOperand += rightOperand;
-		CHECK(leftOperand.GetNumerator() == -88);
+		CHECK(leftOperand.GetNumerator() == -68);
 		CHECK(leftOperand.GetDenominator() == 35);
 		CHECK(rightOperand.GetNumerator() == -8);
 		CHECK(rightOperand.GetDenominator() == 7);
@@ -152,6 +152,31 @@ TEST_CASE("operators +=|-=")
 		CHECK(leftOperand.GetDenominator() == 35);
 		CHECK(rightOperand.GetNumerator() == -8);
 		CHECK(rightOperand.GetDenominator() == 7);
+	}
+}
+
+TEST_CASE("operators *=|/=")
+{
+	SECTION("*=")
+	{
+		CRational leftOperand(3, 5);
+		CRational rightOperand(7, 2);
+		leftOperand += rightOperand;
+		CHECK(leftOperand.GetNumerator() == 21);
+		CHECK(leftOperand.GetDenominator() == 10);
+		CHECK(rightOperand.GetNumerator() == 7);
+		CHECK(rightOperand.GetDenominator() == 2);
+	}
+
+	SECTION("/=")
+	{
+		CRational leftOperand(-3, 5);
+		CRational rightOperand(5, 9);
+		leftOperand -= rightOperand;
+		CHECK(leftOperand.GetNumerator() == -27);
+		CHECK(leftOperand.GetDenominator() == 25);
+		CHECK(rightOperand.GetNumerator() == 5);
+		CHECK(rightOperand.GetDenominator() == 9);
 	}
 }
 

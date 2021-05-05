@@ -31,8 +31,8 @@ private:
 	bool Normalize();
 };
 
-CRational const operator+(CRational& leftOperand, CRational& rightOperand);
-CRational const operator-(CRational& leftOperand, CRational& rightOperand);
+CRational const operator+(const CRational& leftOperand, const CRational& rightOperand);
+CRational const operator-(const CRational& leftOperand, const CRational& rightOperand);
 
-CRational const operator*(CRational& leftOperand, CRational& rightOperand);
-CRational const operator/(CRational& leftOperand, CRational& rightOperand);
+CRational const operator*(const CRational& leftOperand, const CRational& rightOperand);
+CRational const operator/(const CRational& leftOperand, const CRational& rightOperand);
