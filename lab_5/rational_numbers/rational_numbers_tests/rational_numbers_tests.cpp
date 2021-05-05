@@ -203,6 +203,53 @@ TEST_CASE("operators ==|!=")
 }
 
 
+TEST_CASE("operators < > <= >=")
+{
+	SECTION("<")
+	{
+		CRational leftOperand(-7, 10);
+		CRational rightOperand(6, 10);
+		CHECK(leftOperand < rightOperand);
+		leftOperand *= CRational(-1, 1);
+		CHECK(!(leftOperand < rightOperand));
+		leftOperand -= CRational(1, 10);
+		CHECK(!(leftOperand < rightOperand));
+	}
+
+	SECTION(">")
+	{
+		CRational leftOperand(-7, 10);
+		CRational rightOperand(6, 10);
+		CHECK(!(leftOperand > rightOperand));
+		leftOperand *= CRational(-1, 1);
+		CHECK(leftOperand != rightOperand);
+		leftOperand -= CRational(1, 10);
+		CHECK(!(leftOperand < rightOperand));
+	}
+
+	SECTION("<=")
+	{
+		CRational leftOperand(-7, 10);
+		CRational rightOperand(6, 10);
+		CHECK(leftOperand <= rightOperand);
+		leftOperand *= CRational(-1, 1);
+		CHECK(!(leftOperand <= rightOperand));
+		leftOperand -= CRational(1, 10);
+		CHECK(leftOperand <= rightOperand);
+	}
+
+	SECTION(">=")
+	{
+		CRational leftOperand(-7, 10);
+		CRational rightOperand(6, 10);
+		CHECK(!(leftOperand >= rightOperand));
+		leftOperand *= CRational(-1, 1);
+		CHECK(leftOperand >= rightOperand);
+		leftOperand -= CRational(1, 10);
+		CHECK(leftOperand >= rightOperand);
+	}
+}
+
 
 
 

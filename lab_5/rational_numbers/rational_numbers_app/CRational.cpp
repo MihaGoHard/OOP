@@ -149,8 +149,34 @@ bool const operator!=(const CRational& leftOperand, const CRational& rightOperan
 	return !(leftOperand == rightOperand);
 }
 
+bool const operator<(const CRational& leftOperand, const CRational& rightOperand)
+{
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+	return leftNumerator * rightDenominator < rightNumerator * leftDenominator;
+}
+
+bool const operator>(const CRational& leftOperand, const CRational& rightOperand)
+{
+	int leftNumerator = leftOperand.GetNumerator();
+	int leftDenominator = leftOperand.GetDenominator();
+	int rightNumerator = rightOperand.GetNumerator();
+	int rightDenominator = rightOperand.GetDenominator();
+	return leftNumerator * rightDenominator > rightNumerator * leftDenominator;
+}
 
 
+bool const operator<=(const CRational& leftOperand, const CRational& rightOperand)
+{
+	return leftOperand == rightOperand || leftOperand < rightOperand;
+}
+
+bool const operator>=(const CRational& leftOperand, const CRational& rightOperand)
+{
+	return leftOperand == rightOperand || leftOperand > rightOperand;
+}
 
 
 
