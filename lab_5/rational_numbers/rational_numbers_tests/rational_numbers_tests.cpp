@@ -254,6 +254,14 @@ TEST_CASE("operators < > <= >=")
 
 TEST_CASE("operators << >>")
 {
+	SECTION("<<")
+	{
+		ostringstream out;
+		CRational rational(-2, 3);
+		out << rational;
+		CHECK(out.str() == "-2/3");
+	}
+
 	SECTION(">>")
 	{
 		istringstream input("-2/3\n");
