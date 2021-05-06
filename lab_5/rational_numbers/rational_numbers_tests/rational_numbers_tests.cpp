@@ -248,7 +248,31 @@ TEST_CASE("operators < > <= >=")
 		leftOperand -= CRational(1, 10);
 		CHECK(leftOperand >= rightOperand);
 	}
+
 }
+
+
+TEST_CASE("operators << >>")
+{
+	SECTION(">>")
+	{
+		istringstream input("-2/3\n");
+		CRational rational;
+		input >> rational;
+		CHECK(rational.GetNumerator() == -2);
+		CHECK(rational.GetDenominator() == 3);
+	}
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

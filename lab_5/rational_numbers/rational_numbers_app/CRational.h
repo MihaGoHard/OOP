@@ -5,6 +5,9 @@
 #include <iomanip>
 #include <math.h>
 #include <numeric>
+#include <regex>
+
+using namespace std;
 
 class CRational
 {
@@ -45,3 +48,6 @@ bool const operator>(const CRational& leftOperand, const CRational& rightOperand
 
 bool const operator<=(const CRational& leftOperand, const CRational& rightOperand);
 bool const operator>=(const CRational& leftOperand, const CRational& rightOperand);
+
+ostream& operator<<(ostream& outStrm, const CRational& rightOperand);
+istream& operator>>(istream& inStrm, CRational& rightOperand);

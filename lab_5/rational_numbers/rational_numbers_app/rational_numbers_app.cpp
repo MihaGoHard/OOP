@@ -7,5 +7,5 @@ using namespace std;
 int main()
 {
 	CRational rational(8, 0);
-    cout << rational.GetNumerator() << " " << rational.GetDenominator() << "\n";
+    //cout << rational.GetNumerator() << " " << rational.GetDenominator() << "\n";
 }

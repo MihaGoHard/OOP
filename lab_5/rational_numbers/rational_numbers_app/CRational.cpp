@@ -179,6 +179,30 @@ bool const operator>=(const CRational& leftOperand, const CRational& rightOperan
 }
 
 
+ostream& operator<<(ostream& outStrm, const CRational& rightOperand)
+{
+	outStrm << rightOperand.GetNumerator() << "/" << rightOperand.GetDenominator();
+	return outStrm;
+}
+
+istream& operator>>(istream& inStrm, CRational& rightOperand)
+{
+	string inString;
+	int strmPos = inStrm.tellg();
+	getline(inStrm, inString);
+	regex regular("-?(\\d+)/(\\d+)");
+	inStrm.seekg(strmPos);
+	if (regex_match(inString.c_str(), regular))
+	{
+		int numerator;
+		int denominator;
+		inStrm >> numerator;
+		inStrm.get();
+		inStrm >> denominator; 
+		rightOperand = CRational(numerator, denominator);
+	}
+	return inStrm;
+}
 
 
 
