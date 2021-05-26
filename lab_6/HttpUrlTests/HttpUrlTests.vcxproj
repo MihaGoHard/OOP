@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\HttpUrlApp\CHttpUrl.cpp" />
+    <ClCompile Include="..\HttpUrlApp\CUrlParsingError.cpp" />
     <ClCompile Include="HttpUrlTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

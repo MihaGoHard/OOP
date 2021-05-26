@@ -5,6 +5,8 @@
 #include <sstream>
 
 #include "../HttpUrlApp/CHttpUrl.h"
+#include "../HttpUrlApp/CUrlParsingError.h"
+
 using namespace std;
 
 TEST_CASE("CHttpUrl")
@@ -38,7 +40,6 @@ TEST_CASE("CHttpUrl")
 			SECTION("Invalid domain")
 			{
 				string url = "http:///webhp?gws_rd=ssl#q=cpp";
-
 				CHECK_THROWS(CHttpUrl{ url });
 			}
 

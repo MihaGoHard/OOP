@@ -1,5 +1,5 @@
 #include "CHttpUrl.h"
-#include <iostream>
+#include "CUrlParsingError.h"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ CHttpUrl::CHttpUrl(string const& url)
 	}
 	else
 	{
-		cout << "ex";
+		throw CUrlParsingError("Invalid URL. use  protocol://domain:port/document or protocol://domain/document\n");
 	}
 }
 
@@ -56,36 +56,31 @@ Protocol CHttpUrl::ConvertStrToProtocol(string& inputStr) const
 		return Protocol::HTTP;
 	case 5:
 		return Protocol::HTTPS;
-	default:
-		cout << "ex";
 	}
 }
 
 unsigned short CHttpUrl::GetPortFromStr(string& inputStr) const
 {
-	if (inputStr.empty()) 
+	if (inputStr.empty())
 	{
-		switch (m_protocol) 
+		switch (m_protocol)
 		{
 		case Protocol::HTTP:
 			return 80;
 		case Protocol::HTTPS:
 			return 443;
-		default:
-			cout << "ex";
 		}
 	}
 
 	return ConvertStrToPort(inputStr);
 }
 
-
 unsigned short CHttpUrl::ConvertStrToPort(string& inputStr) const
 {
 	int port = stoul(inputStr);
 	if (port < 1 || port > USHRT_MAX)
 	{
-		cout << "ex";
+		throw CUrlParsingError("Invalid port number. Use port in range [1 - 65535]");
 	}
 
 	return (unsigned short)port;
@@ -99,26 +94,3 @@ string CHttpUrl::GetProtocolInStr() const
 	}
 	return "https";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
