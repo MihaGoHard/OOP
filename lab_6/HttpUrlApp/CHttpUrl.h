@@ -31,10 +31,38 @@ public:
 	unsigned short GetPort() const;
 
 private:
+	Protocol ConvertStrToProtocol(string& inputStr) const;
+	unsigned short GetPortFromStr(string& inputStr) const;
+	unsigned short ConvertStrToPort(string& inputStr) const;
+
+	string GetProtocolInStr() const;
 
 	string m_domain;
 	string m_document;
 	Protocol m_protocol;
 	unsigned short m_port;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

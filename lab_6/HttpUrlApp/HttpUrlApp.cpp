@@ -4,8 +4,8 @@
 
 int main()
 {
-	string url = "https://www.google.com:443/webhp?gws_rd=ssl#q=cpp";
-	CHttpUrl obj(url);
+	//string url = "hjkjjhj://www.google.com:443/webhp?gws_rd=ssl#q=cpp";
+	//CHttpUrl obj(url);
 	return 0;
 }
 
