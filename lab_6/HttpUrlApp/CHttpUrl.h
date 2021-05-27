@@ -3,6 +3,7 @@
 #include <cctype>
 #include <regex>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -32,8 +33,8 @@ public:
 	unsigned short GetPort() const;
 
 private:
-	unsigned short GetPortFromStr(string& inputStr) const;
-	string NormalizeDocumentStr(string const& inputStr) const;
+	unsigned short GetPortFromStr(string& inputStr);
+	static string NormalizeDocumentStr(string const& inputStr); 
 	string GetProtocolInStr() const;
 
 	string m_domain;
@@ -44,3 +45,40 @@ private:
 
 Protocol ConvertStrToProtocol(string inputStr);
 unsigned short ConvertStrToPort(const string& inputStr);
+
+
+
+// порты *
+// в тестах граничные условия *
+// регистр ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

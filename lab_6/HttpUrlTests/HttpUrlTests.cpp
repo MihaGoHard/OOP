@@ -99,6 +99,14 @@ TEST_CASE("CHttpUrl")
 			CHECK(httpUrl.GetURL() == "https://www.google.com:444/webhp");
 		}
 
+		SECTION("Invalid port")
+		{
+			string url1 = "https://disk.yandex.ru:65536/i/U61TCPZ4oz-LXw";
+			string url2 = "https://disk.yandex.ru:0/i/U61TCPZ4oz-LXw";
+			CHECK_THROWS(CHttpUrl{url1});
+			CHECK_THROWS(CHttpUrl{ url2 });
+		}
+
 		SECTION("Invalid domain (domain, document, protocol, port)")
 		{
 			CHECK_THROWS(CHttpUrl{ "", "webhp", Protocol::HTTPS, 444 });
@@ -115,3 +123,27 @@ TEST_CASE("CHttpUrl")
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

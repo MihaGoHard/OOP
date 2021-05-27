@@ -5,7 +5,7 @@ using namespace std;
 
 CHttpUrl::CHttpUrl(string const& url)
 {
-	regex regExp("(http|https)://([^/ :]+):?([^/ ]*)(/?[^ #?]*)\\x3f?([^ #]*)#?([^ ]*)");
+	regex regExp("^(http|https)://([^/ :]+):?([^/ ]*)(/?[^ #?]*)\\x3f?([^ #]*)#?([^ ]*)$");
 	cmatch result;
 
 	if (regex_match(url.c_str(), result, regExp))
@@ -53,10 +53,10 @@ CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protoc
 
 string CHttpUrl::GetURL() const
 {
-	string port = "";
-	if (m_port != 80 && m_port != 443)
+	string port = ':' + to_string(m_port);
+	if ((m_port == 80 && m_protocol == Protocol::HTTP) || (m_port == 443 && m_protocol == Protocol::HTTPS))
 	{
-		port = ':' + to_string(m_port);
+		port = "";
 	}
 	return GetProtocolInStr() + "://" + m_domain + port + m_document;
 }
@@ -81,7 +81,7 @@ unsigned short CHttpUrl::GetPort() const
 	return m_port;
 }
 
-unsigned short CHttpUrl::GetPortFromStr(string& inputStr) const
+unsigned short CHttpUrl::GetPortFromStr(string& inputStr)
 {
 	if (inputStr.empty())
 	{
@@ -97,7 +97,7 @@ unsigned short CHttpUrl::GetPortFromStr(string& inputStr) const
 	return ConvertStrToPort(inputStr);
 }
 
-string CHttpUrl::NormalizeDocumentStr(string const& inputStr) const
+string CHttpUrl::NormalizeDocumentStr(string const& inputStr)
 {
 	if (inputStr[0] != '/')
 	{
@@ -135,11 +135,31 @@ Protocol ConvertStrToProtocol(string inputStr)
 
 unsigned short ConvertStrToPort(const string& inputStr)
 {
-	int port = stoul(inputStr);
+	int port = stoi(inputStr);
 	if (port < 1 || port > USHRT_MAX)
 	{
 		throw CUrlParsingError("Invalid port number. Use port in range [1 - 65535]\n");
 	}
-
 	return (unsigned short)port;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
