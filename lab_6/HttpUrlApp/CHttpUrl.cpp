@@ -39,8 +39,16 @@ CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protoc
 }
 
 CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protocol, unsigned short port)
+	: m_protocol(protocol)
+	, m_port(port)
 {
-	;
+	if (domain.empty() || document.empty())
+	{
+		throw CUrlParsingError("Invalid domain or document. Use [domain] [document]|[/document] [protocol]\n");
+	};
+
+	m_domain = domain;
+	m_document = NormalizeDocumentStr(document);
 }
 
 string CHttpUrl::NormalizeDocumentStr(string const& inputStr) const
