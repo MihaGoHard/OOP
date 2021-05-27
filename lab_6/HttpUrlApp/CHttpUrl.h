@@ -18,7 +18,7 @@ public:
 
 	CHttpUrl(string const& domain, string const& document, Protocol protocol = Protocol::HTTP);
 
-	//CHttpUrl(string const& domain, string const& document, Protocol protocol, unsigned short port);
+	CHttpUrl(string const& domain, string const& document, Protocol protocol, unsigned short port);
 
 	string GetURL() const;
 

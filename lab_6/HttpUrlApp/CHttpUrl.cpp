@@ -38,6 +38,11 @@ CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protoc
 	m_port = GetPortFromStr(portEmptyStr);
 }
 
+CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protocol, unsigned short port)
+{
+	;
+}
+
 string CHttpUrl::NormalizeDocumentStr(string const& inputStr) const
 {
 	if (inputStr[0] != '/')

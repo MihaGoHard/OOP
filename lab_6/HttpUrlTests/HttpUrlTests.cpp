@@ -85,6 +85,35 @@ TEST_CASE("CHttpUrl")
 			CHECK_THROWS(CHttpUrl{ "", "", Protocol::HTTP });
 		}
 	}
+
+	SECTION("Domain, document, protocol, port")
+	{
+		SECTION("Valid (domain, document, protocol, port)")
+		{
+			CHttpUrl httpUrl("www.google.com", "webhp", Protocol::HTTPS, 444);
+
+			CHECK(httpUrl.GetDocument() == "/webhp");
+			CHECK(httpUrl.GetDomain() == "www.google.com");
+			CHECK(httpUrl.GetPort() == 444);
+			CHECK(httpUrl.GetProtocol() == Protocol::HTTPS);
+			CHECK(httpUrl.GetURL() == "https://www.google.com/webhp");
+		}
+
+		SECTION("Invalid domain (domain, document, protocol, port)")
+		{
+			CHECK_THROWS(CHttpUrl{ "", "webhp", Protocol::HTTPS, 444 });
+		}
+
+		SECTION("Invalid document (domain, document, protocol, port)")
+		{
+			CHECK_THROWS(CHttpUrl{ "www.google.com", "", Protocol::HTTPS, 444 });
+		}
+
+		SECTION("Invalid domain, document (domain, document, protocol, port)")
+		{
+			CHECK_THROWS(CHttpUrl{ "", "", Protocol::HTTP, 444 });
+		}
+	}
 }
 
 
