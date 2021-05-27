@@ -80,14 +80,9 @@ TEST_CASE("CHttpUrl")
 			CHECK_THROWS(CHttpUrl{ "www.google.com", "", Protocol::HTTPS });
 		}
 
-		SECTION("Invalid protocol (domain, document, protocol)")
+		SECTION("Invalid domain, document (domain, document, protocol)")
 		{
-			CHECK_THROWS(CHttpUrl{ "www.google.com", "", Protocol::FTP });
-		}
-
-		SECTION("Invalid (domain, document, protocol)")
-		{
-			CHECK_THROWS(CHttpUrl{ "", "", Protocol::FTP });
+			CHECK_THROWS(CHttpUrl{ "", "", Protocol::HTTP });
 		}
 	}
 }

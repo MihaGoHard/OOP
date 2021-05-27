@@ -7,8 +7,7 @@ using namespace std;
 enum class Protocol
 {
 	HTTP,
-	HTTPS,
-	FTP
+	HTTPS
 };
 
 class CHttpUrl
@@ -35,6 +34,7 @@ private:
 	Protocol ConvertStrToProtocol(string& inputStr) const;
 	unsigned short GetPortFromStr(string& inputStr) const;
 	unsigned short ConvertStrToPort(string& inputStr) const;
+	string NormalizeDocumentStr(string const& inputStr) const;
 
 	string GetProtocolInStr() const;
 

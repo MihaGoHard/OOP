@@ -24,9 +24,29 @@ CHttpUrl::CHttpUrl(string const& url)
 }
 
 CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protocol)
+	: m_protocol(protocol)
 {
-	;
+	if (domain.empty() || document.empty())
+	{
+		throw CUrlParsingError("Invalid domain or document. Use [domain] [document]|[/document] [protocol]\n");
+	}
+
+	m_domain = domain;
+	m_document = NormalizeDocumentStr(document);
+
+	string portEmptyStr = "";
+	m_port = GetPortFromStr(portEmptyStr);
 }
+
+string CHttpUrl::NormalizeDocumentStr(string const& inputStr) const
+{
+	if (inputStr[0] != '/')
+	{
+		return '/' + inputStr;
+	}
+	return inputStr;
+}
+
 
 string CHttpUrl::GetURL() const
 {
