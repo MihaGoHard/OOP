@@ -7,7 +7,8 @@ using namespace std;
 enum class Protocol
 {
 	HTTP,
-	HTTPS
+	HTTPS,
+	FTP
 };
 
 class CHttpUrl
@@ -16,7 +17,7 @@ public:
 	
 	CHttpUrl(string const& url);
 
-	//CHttpUrl(string const& domain, string const& document, Protocol protocol = Protocol::HTTP);
+	CHttpUrl(string const& domain, string const& document, Protocol protocol = Protocol::HTTP);
 
 	//CHttpUrl(string const& domain, string const& document, Protocol protocol, unsigned short port);
 

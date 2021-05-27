@@ -23,6 +23,11 @@ CHttpUrl::CHttpUrl(string const& url)
 	}
 }
 
+CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protocol)
+{
+	;
+}
+
 string CHttpUrl::GetURL() const
 {
 	return GetProtocolInStr() + "://" + m_domain + m_document;
