@@ -96,7 +96,7 @@ TEST_CASE("CHttpUrl")
 			CHECK(httpUrl.GetDomain() == "www.google.com");
 			CHECK(httpUrl.GetPort() == 444);
 			CHECK(httpUrl.GetProtocol() == Protocol::HTTPS);
-			CHECK(httpUrl.GetURL() == "https://www.google.com/webhp");
+			CHECK(httpUrl.GetURL() == "https://www.google.com:444/webhp");
 		}
 
 		SECTION("Invalid domain (domain, document, protocol, port)")
@@ -115,27 +115,3 @@ TEST_CASE("CHttpUrl")
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -51,24 +51,14 @@ CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protoc
 	m_document = NormalizeDocumentStr(document);
 }
 
-string CHttpUrl::NormalizeDocumentStr(string const& inputStr) const
-{
-	if (inputStr[0] != '/')
-	{
-		return '/' + inputStr;
-	}
-	return inputStr;
-}
-
-
 string CHttpUrl::GetURL() const
 {
-	return GetProtocolInStr() + "://" + m_domain + m_document;
-}
-
-string CHttpUrl::GetDocument() const
-{
-	return m_document;
+	string port = "";
+	if (m_port != 80 && m_port != 443)
+	{
+		port = ':' + to_string(m_port);
+	}
+	return GetProtocolInStr() + "://" + m_domain + port + m_document;
 }
 
 string CHttpUrl::GetDomain() const
@@ -76,9 +66,9 @@ string CHttpUrl::GetDomain() const
 	return m_domain;
 }
 
-unsigned short CHttpUrl::GetPort() const
+string CHttpUrl::GetDocument() const
 {
-	return m_port;
+	return m_document;
 }
 
 Protocol CHttpUrl::GetProtocol() const
@@ -86,15 +76,9 @@ Protocol CHttpUrl::GetProtocol() const
 	return m_protocol;
 }
 
-Protocol CHttpUrl::ConvertStrToProtocol(string& inputStr) const
+unsigned short CHttpUrl::GetPort() const
 {
-	switch (inputStr.length())
-	{
-	case 4:
-		return Protocol::HTTP;
-	case 5:
-		return Protocol::HTTPS;
-	}
+	return m_port;
 }
 
 unsigned short CHttpUrl::GetPortFromStr(string& inputStr) const
@@ -113,15 +97,13 @@ unsigned short CHttpUrl::GetPortFromStr(string& inputStr) const
 	return ConvertStrToPort(inputStr);
 }
 
-unsigned short CHttpUrl::ConvertStrToPort(string& inputStr) const
+string CHttpUrl::NormalizeDocumentStr(string const& inputStr) const
 {
-	int port = stoul(inputStr);
-	if (port < 1 || port > USHRT_MAX)
+	if (inputStr[0] != '/')
 	{
-		throw CUrlParsingError("Invalid port number. Use port in range [1 - 65535]");
+		return '/' + inputStr;
 	}
-
-	return (unsigned short)port;
+	return inputStr;
 }
 
 string CHttpUrl::GetProtocolInStr() const
@@ -131,4 +113,33 @@ string CHttpUrl::GetProtocolInStr() const
 		return "http";
 	}
 	return "https";
+}
+
+Protocol ConvertStrToProtocol(string inputStr)
+{
+	transform(inputStr.begin(), inputStr.end(), inputStr.begin(), ::tolower);
+
+	if (inputStr == "http")
+	{
+		return Protocol::HTTP;
+	}
+	else if (inputStr == "https")
+	{
+		return Protocol::HTTPS;
+	}
+	else
+	{
+		throw CUrlParsingError("Invalid protocol. Use http|https \n");
+	}
+}
+
+unsigned short ConvertStrToPort(const string& inputStr)
+{
+	int port = stoul(inputStr);
+	if (port < 1 || port > USHRT_MAX)
+	{
+		throw CUrlParsingError("Invalid port number. Use port in range [1 - 65535]\n");
+	}
+
+	return (unsigned short)port;
 }

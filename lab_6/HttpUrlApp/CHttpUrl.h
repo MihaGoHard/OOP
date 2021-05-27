@@ -1,4 +1,6 @@
 #pragma once
+#include <algorithm>
+#include <cctype>
 #include <regex>
 #include <string>
 
@@ -13,7 +15,6 @@ enum class Protocol
 class CHttpUrl
 {
 public:
-	
 	CHttpUrl(string const& url);
 
 	CHttpUrl(string const& domain, string const& document, Protocol protocol = Protocol::HTTP);
@@ -31,11 +32,8 @@ public:
 	unsigned short GetPort() const;
 
 private:
-	Protocol ConvertStrToProtocol(string& inputStr) const;
 	unsigned short GetPortFromStr(string& inputStr) const;
-	unsigned short ConvertStrToPort(string& inputStr) const;
 	string NormalizeDocumentStr(string const& inputStr) const;
-
 	string GetProtocolInStr() const;
 
 	string m_domain;
@@ -44,26 +42,5 @@ private:
 	unsigned short m_port;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Protocol ConvertStrToProtocol(string inputStr);
+unsigned short ConvertStrToPort(const string& inputStr);

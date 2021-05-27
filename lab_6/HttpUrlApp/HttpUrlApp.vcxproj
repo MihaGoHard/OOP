@@ -144,11 +144,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CHttpUrl.cpp" />
+    <ClCompile Include="CInputHandler.cpp" />
     <ClCompile Include="CUrlParsingError.cpp" />
     <ClCompile Include="HttpUrlApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CHttpUrl.h" />
+    <ClInclude Include="CInputHandler.h" />
     <ClInclude Include="CUrlParsingError.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
