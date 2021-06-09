@@ -44,29 +44,14 @@ TEST_CASE("FindMax")
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+TEST_CASE("FindMax const char*")
+{
+	SECTION("const char*")
+	{
+		vector<const char*> arr = { "a", "", "ac", "ab", "Ab" };
+		const char* maxElem = "";
+		bool result = FindMax(arr, maxElem);
+		CHECK(result);
+		CHECK(maxElem == "ac");
+	}
+}
