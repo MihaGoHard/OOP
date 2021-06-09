@@ -35,7 +35,7 @@ CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protoc
 	m_document = NormalizeDocumentStr(document);
 
 	string portEmptyStr = "";
-	m_port = GetPortFromStr(portEmptyStr);
+	m_port = GetPortFromStr(portEmptyStr); // неявно
 }
 
 CHttpUrl::CHttpUrl(string const& domain, string const& document, Protocol protocol, unsigned short port)
