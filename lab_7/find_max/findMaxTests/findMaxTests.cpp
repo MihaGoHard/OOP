@@ -54,4 +54,5 @@ TEST_CASE("FindMax const char*")
 		CHECK(result);
 		CHECK(maxElem == "ac");
 	}
+
 }
